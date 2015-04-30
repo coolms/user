@@ -67,6 +67,7 @@ return [
     ],
     'domain_services' => [
         'aliases' => [
+            'CmsUser\Mapping\UserInterface' => 'CmsUser\Service\UserServiceInterface',
             'CmsUser\Service\UserServiceInterface' => 'CmsUser\Service\UserService',
         ],
         'factories' => [
@@ -114,6 +115,14 @@ return [
     'listeners' => [
         'CmsUser\Event\BlameableListener' => 'CmsUser\Event\BlameableListener',
         'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
+    ],
+    'mappers' => [
+        'aliases' => [
+            'CmsUser\Mapping\UserInterface' => 'CmsUser\Persistence\UserMapperInterface',
+        ],
+        'delegators' => [
+            'CmsUser\Persistence\UserMapperInterface' => ['CmsUser\Factory\Persistence\UserMapperDelegatorFactory'],
+        ],
     ],
     'navigation' => [
         'cms-admin' => [
