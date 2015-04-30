@@ -1,0 +1,20 @@
+<?php
+/**
+ * CoolMS2 User Module (http://www.coolms.com/)
+ *
+ * @link      http://github.com/coolms/user for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+?>
+<div class="alert alert-success">
+<?php
+    printf($this->translate('Your email address has been changed successfully. ' .
+        'An email has been sent to %s to confirm your new email address.', __NAMESPACE__),
+        '<strong>' . $this->identity->getEmail() . '</strong>');
+?>
+</div>

@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CmsUser\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dmitry Popov <d.popov@altgraphic.com>\n"
+"Language-Team: Altgraphic, ALC <info@altgraphic.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_US\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "User"
+msgstr "User"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Log In"
+msgstr "Log In"
+
+msgid "Log in"
+msgstr "Log In"
+
+msgid "Sign In"
+msgstr "Sign In"
+
+msgid "Sign in"
+msgstr "Sign In"
+
+msgid "Log Out"
+msgstr "Log Out"
+
+msgid "Log out"
+msgstr "Log Out"
+
+msgid "Sign Out"
+msgstr "Sign Out"
+
+msgid "Sign out"
+msgstr "Sign Out"
+
+msgid "Sign Up"
+msgstr "Sign Up"
+
+msgid "Sign up"
+msgstr "Sign Up"

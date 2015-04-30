@@ -1,0 +1,168 @@
+<?php
+/**
+ * CoolMS2 User Module (http://www.coolms.com/)
+ *
+ * @link      http://github.com/coolms/user for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+if ($this->enableRegistration === false): ?>
+<div class="alert alert-info">
+  <?= $this->translate('Registration is disabled', __NAMESPACE__); ?>
+</div>
+<?php 
+  return;
+endif;
+
+// Set translation and namespace options here
+$this->formLabel()->setTranslatorTextDomain(__NAMESPACE__);
+$this->legend()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formMessages()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formRow()->setTranslatorTextDomain(__NAMESPACE__);
+
+// Set form fields classes and placeholders here
+$form = $this->form;
+$form->setAttributes([
+        'class' => 'form-horizontal cms-form cmsuser-form cmsuser-form-register',
+        'role'  => 'form',
+    ])->setLabelAttributes(['class' => 'panel-title']);
+
+if ($form->has('username')) {
+    $form->get('username')->setOption('twbs', [
+        'icon' => [
+            'content' => 'user',
+            'placement' => 'prepend',
+        ],
+    ]);
+}
+
+if ($form->has('lastName')) {
+    $form->get('lastName')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-4'],
+        'firstName' => [
+            'type' => 'formGroupElement',
+            'content' => 'firstName',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+        'secondName' => [
+            'type' => 'formGroupElement',
+            'content' => 'secondName',
+            'order' => 9100,
+            'placement' => 'append',
+        ],
+    ]);
+}
+
+if ($form->has('firstName')) {
+    $form->get('firstName')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-4'],
+    ]);
+}
+
+if ($form->has('secondName')) {
+    $form->get('secondName')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-4'],
+    ]);
+}
+
+$form->get('password')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-6'],
+        'passwordVerify' => [
+            'type' => 'formGroupElement',
+            'content' => 'passwordVerify',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+$form->get('passwordVerify')->setOption('twbs', [
+        'icon' => ['placement' => false],
+        'col' => ['class' => 'col-xs-12 col-sm-6'],
+    ]);
+
+$form->get('question')->setOption('twbs', [
+        'icon' => [
+            'content' => 'question-sign',
+            'placement' => 'prepend',
+        ],
+        'col' => ['class' => 'col-xs-12 col-sm-6'],
+        'answer' => [
+            'type' => 'formGroupElement',
+            'content' => 'answer',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+$form->get('answer')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-6'],
+    ]);
+
+if ($form->has('locale')) {
+    $form->get('locale')->setLabel('Select language')
+        ->setOption('twbs', [
+            'icon' => [
+                'content' => 'globe',
+                'placement' => 'prepend',
+            ],
+        ]);
+}
+
+$form->get('submit')->setAttribute('value', 'Sign up')
+    ->setOption('twbs', [
+        'element' => ['class' => 'btn-block'],
+        'col' => ['class' => 'col-xs-12 col-sm-8'],
+        'reset' => [
+            'type' => 'formGroupElement',
+            'content' => 'reset',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+$form->get('reset')->setOption('twbs', [
+    'element' => ['class' => 'btn-block'],
+    'col' => ['class' => 'col-xs-12 col-sm-4'],
+]);
+
+$form->prepare();
+
+?>
+<?= $this->form()->openTag($form); ?>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <?= $this->glyphicon('edit'); ?>&nbsp;&nbsp;<?= $this->formLabel($form); ?>
+    </div>
+    <div class="panel-body">
+      <?= $this->formMessages($form); ?>
+      <?php if ($form->has('username')): ?>
+        <?= $this->formRow($form->get('username')); ?>
+      <?php endif; ?>
+      <?= $this->formRow($form->get('email')); ?>
+      <?= $this->formRow($form->get('password')); ?>
+      <?= $this->formRow($form->get('question')); ?>
+      <?php if ($form->has('lastName')): ?>
+        <?= $this->formRow($form->get('lastName')); ?>
+      <?php endif; ?>
+      <?= $this->formRow($form->get('birthday')); ?>
+      <?php if ($form->has('locale')): ?>
+        <?= $this->formRow($form->get('locale')); ?>
+      <?php endif; ?>
+    </div>
+    <div class="panel-footer clearfix">
+      <?php if ($form->has('captcha')): ?>
+        <?= $this->formRow($form->get('captcha')); ?>
+      <?php endif; ?>
+      <?php if ($form->has('csrf')): ?>
+        <?= $this->formRow($form->get('csrf')); ?>
+      <?php endif; ?>
+      <?= $this->formRow($form->get('redirect')); ?>
+      <?= $this->formRow($form->get('submit')); ?>
+    </div>
+  </div>
+<?= $this->form()->closeTag();

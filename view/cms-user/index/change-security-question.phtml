@@ -1,0 +1,83 @@
+<?php
+/**
+ * CoolMS2 User Module (http://www.coolms.com/)
+ *
+ * @link      http://github.com/coolms/user for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+// Set translation and namespace options here
+$this->formLabel()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formMessages()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formRow()->setTranslatorTextDomain(__NAMESPACE__);
+
+// Set form fields classes and placeholders here
+$form = $this->form;
+$form->setAttributes([
+        'class' => 'form-horizontal cms-form cmsuser-form cmsuser-form-change-security-question',
+        'role'  => 'form',
+    ])->setLabelAttributes(['class' => 'panel-title']);
+
+$form->get('question')->setOption('twbs', [
+        'icon' => [
+            'content' => 'question-sign',
+            'placement' => 'prepend',
+        ],
+        'col' => ['class' => 'col-xs-12 col-sm-6'],
+        'answer' => [
+            'type' => 'formGroupElement',
+            'content' => 'answer',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+$form->get('answer')->setOption('twbs', [
+    'col' => ['class' => 'col-xs-12 col-sm-6'],
+]);
+
+$form->get('submit')->setAttribute('value', 'Change security question')
+    ->setOption('twbs', [
+        'element' => ['class' => 'btn-block'],
+        'col' => ['class' => 'col-xs-12 col-sm-8'],
+        'reset' => [
+            'type' => 'formGroupElement',
+            'content' => 'reset',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+$form->get('reset')->setOption('twbs', [
+    'element' => ['class' => 'btn-block'],
+    'col' => ['class' => 'col-xs-12 col-sm-4'],
+]);
+
+$form->prepare();
+
+?>
+<?= $this->form()->openTag($form); ?>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <?= $this->glyphicon('edit'); ?>&nbsp;&nbsp;<?= $this->formLabel($form); ?>
+    </div>
+    <div class="panel-body">
+      <?= $this->formMessages($form); ?>
+      <?= $this->formRow($form->get('passwordVerify')); ?>
+      <?= $this->formRow($form->get('question')); ?>
+    </div>
+    <div class="panel-footer clearfix">
+      <?php if ($form->has('captcha')): ?>
+        <?= $this->formRow($form->get('captcha')); ?>
+      <?php endif; ?>
+      <?php if ($form->has('csrf')): ?>
+        <?= $this->formRow($form->get('csrf')); ?>
+      <?php endif; ?>
+      <?= $this->formRow($form->get('submit')); ?>
+    </div>
+  </div>
+<?= $this->form()->closeTag();

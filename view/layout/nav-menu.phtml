@@ -1,0 +1,47 @@
+<?php
+/**
+ * CoolMS2 User module (http://www.coolms.com/)
+ * 
+ * @link      http://github.com/coolms/CmsUser for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+if ($this->navMenu == true):
+  if ($this->cmsUserIdentity()): ?>
+    <a href="<?php echo $this->url('cms-user'); ?>" class="btn btn-success">
+      <?php echo $this->translate('User Home', __NAMESPACE__); ?>
+    </a>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'edit-profile']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Edit Profile', __NAMESPACE__); ?>
+    </a>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'change-password']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Change password', __NAMESPACE__); ?>
+    </a>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'change-email']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Change email', __NAMESPACE__); ?>
+    </a>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'change-security-question']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Change security question', __NAMESPACE__); ?>
+    </a>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'logout']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Log Out', __NAMESPACE__); ?>
+    </a>
+  <?php else: ?>
+    <a href="<?php echo $this->url('cms-user/login'); ?>" class="btn btn-success">
+      <?php echo $this->translate('Log in', __NAMESPACE__); ?>
+    </a>
+    <?php if ($this->cmsUser()->getOptionsService()->getEnableRegistration()): ?>
+    <a href="<?php echo $this->url('cms-user/register'); ?>" class="btn btn-success">
+      <?php echo $this->translate('Sign Up', __NAMESPACE__); ?>
+    </a>
+    <?php endif; ?>
+    <a href="<?php echo $this->url('cms-user/default', ['action' => 'reset-password']); ?>" class="btn btn-success">
+      <?php echo $this->translate('Reset Password', __NAMESPACE__); ?>
+    </a>
+    <?php endif;
+endif; ?>
+<hr />

@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CmsUser\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dmitry Popov <d.popov@altgraphic.com>\n"
+"Language-Team: Altgraphic, ALC <info@altgraphic.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru_RU\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+msgid "Сreate an Account"
+msgstr "Создать аккаунт"
+
+msgid "Сreate an account"
+msgstr "Создать аккаунт"
+
+msgid "Registration is disabled"
+msgstr "Регистрация отключена"
+
+msgid "Reseting Password"
+msgstr "Сброс пароля"
+
+msgid "Reseting password"
+msgstr "Сброс пароля"
+
+msgid "Reset Password"
+msgstr "Сбросить пароль"
+
+msgid "Reset password"
+msgstr "Сбросить пароль"
+
+msgid "Changing Password"
+msgstr "Изменение пароля"
+
+msgid "Changing password"
+msgstr "Изменение пароля"
+
+msgid "Change password"
+msgstr "Изменить пароль"
+
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid "New password"
+msgstr "Новый пароль"
+
+msgid "Changing Email Address"
+msgstr "Изменение адреса эл.почты"
+
+msgid "Changing email address"
+msgstr "Изменение адреса эл.почты"
+
+msgid "Change Email"
+msgstr "Изменить адрес эл.почты"
+
+msgid "Change email"
+msgstr "Изменить адрес эл.почты"
+
+msgid "User Home"
+msgstr "Личный кабинет"
+
+msgid "Editing Profile"
+msgstr "Редактирование профиля"
+
+msgid "Editing profile"
+msgstr "Редактирование профиля"
+
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+msgid "Reset"
+msgstr "Сброс"
+
+msgid "Username or Email"
+msgstr "Имя пользователя или адрес эл.почты"
+
+msgid "Mobile phone number"
+msgstr "Номер мобильного телефона"
+
+msgid "Type your mobile phone number"
+msgstr "Введите номер Вашего мобильного телефона"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Guest"
+msgstr "Гость"
+
+msgid "First Name"
+msgstr "Имя"
+
+msgid "Second Name"
+msgstr "Отчество"
+
+msgid "Last Name"
+msgstr "Фамилия"
+
+msgid "Email"
+msgstr "Эл. почта"
+
+msgid "Email Address"
+msgstr "Адрес эл.почты"
+
+msgid "Your Email"
+msgstr "Ваш адрес эл.почты"
+
+msgid "New Email"
+msgstr "Новый адрес эл.почты"
+
+msgid "New email"
+msgstr "Новый адрес эл.почты"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Confirm Password"
+msgstr "Подвердите пароль"
+
+msgid "Confirm password"
+msgstr "Подвердите пароль"
+
+msgid "Security Question"
+msgstr "Контрольный вопрос"
+
+msgid "Changing Security Question"
+msgstr "Изменение контрольного вопроса"
+
+msgid "Changing security question"
+msgstr "Изменение контрольного вопроса"
+
+msgid "Change Security Question"
+msgstr "Изменить контрольный вопрос"
+
+msgid "Change security question"
+msgstr "Изменить контрольный вопрос"
+
+msgid "Type Your Answer"
+msgstr "Введите ответ"
+
+msgid "When were you born?"
+msgstr "Когда Вы родились?"
+
+msgid "Congratulations! You have successfully logged in"
+msgstr "Поздравляем, Вы успешно вошли в систему"
+
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+msgid "Welcome, %s!"
+msgstr "Добро пожаловать, %s!"
+
+msgid "Logged in as %s"
+msgstr "Вы вошли как %s"
+
+msgid "Please follow the buttons at the top to navigate through the system"
+msgstr "Пожалуйста, используйте меню для выбора действия"
+
+msgid "This username is already taken"
+msgstr "Пользователь с таким именем уже существует"
+
+msgid "An user with this email already exists"
+msgstr "Пользователь с таким адресом эл.почты уже существует"
+
+msgid "Please, confirm your request to change password!"
+msgstr "Пожалуйста, подтвердите Ваш запрос на изменение пароля!"
+
+msgid "Hello, %s."
+msgstr "Здравствуйте, %s."
+
+msgid "Please, complete your registration!"
+msgstr "Пожалуйста, завершите Вашу регистрацию!"
+
+msgid "Welcome to %s. Please, follow this link %s to confirm your email and complete your registration."
+msgstr "Добро пожаловать на %s. Пожалуйста, следуйте по этой ссылке %s для подтверждения адреса эл.почты и завершения регистрации."
+
+msgid "Please, follow this link %s to confirm your request to change password."
+msgstr "Пожалуйста, следуйте по этой ссылке %s, чтобы подвердить Ваш запрос на изменение пароля."
+
+msgid "An email has been sent to %s. Please, check your inbox and confirm your request to change password!"
+msgstr "На адрес электронной почты %s было отправлено письмо. Пожалуйста, проверьте Ваш почтовый ящик и подвердите запрос на изменение пароля."
+
+msgid "Confirmation successful! You have a new password. An email has been sent to %s with your new password."
+msgstr "Подтверждение успешно выполнено! У Вас новый пароль. На адрес электронной почты %s было отправлено письмо с новым паролем."
+
+msgid "Your password has been changed!"
+msgstr "Ваш пароль изменен!"
+
+msgid "Hello again, %s."
+msgstr "Здравствуйте еще раз, %s."
+
+msgid "Your new password is: %s. Please, follow this link %s to log in with your new password."
+msgstr "Ваш новый пароль: %s. Пожалуйста, следуйте по этой ссылке %s для входа в систему с новым паролем."
+
+msgid "Your password has been changed successfully."
+msgstr "Ваш пароль успешно изменен."
+
+msgid "Confirmation successful! Your email address is %s."
+msgstr "Ваш адрес эл.почты %s успешно подтвержден."
+
+msgid "Please, follow this link %s to log into your account."
+msgstr "Пожалуйста, следуйте по этой ссылке %s для входа в Ваш аккаунт."
+
+msgid "Please, confirm your email!"
+msgstr "Пожалуйста, подтвердите Ваш адрес эл.почты!"
+
+msgid "Please, follow this link %s to confirm your email."
+msgstr "Пожалуйста, следуйте по этой ссылке %s для подтверждения Вашего адреса эл.почты."
+
+msgid "Your email address has been changed successfully. An email has been sent to %s to confirm your new email address."
+msgstr "Ваш адрес эл.почты успешно изменен. На новый адрес эл.почты %s отправлено письмо для подтвеждения нового адреса эл.почты."
+
+msgid "Your security question has been changed successfully."
+msgstr "Ваш контрольный вопрос успешно изменен."
+
+msgid "Congratulations! You have successfully registered. Please, check your inbox to confirm your email address and to complete registration."
+msgstr "Поздравляем с успешной регистрацией! Пожалуйста, проверьте Ваш ящик эл.почты для подтверждения адреса эл.почты и завершения регистрации."
+
+msgid "Your data has been successfully saved"
+msgstr "Данные успешно сохранены"
+
+msgid "Individual metadata"
+msgstr "Персональные данные"
+
+msgid "Select Avatar"
+msgstr "Выберите аватар"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Remove"
+msgstr "Удалить"

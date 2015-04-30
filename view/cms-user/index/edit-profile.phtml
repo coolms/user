@@ -1,0 +1,150 @@
+<?php
+/**
+ * CoolMS2 User Module (http://www.coolms.com/)
+ *
+ * @link      http://github.com/coolms/user for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+$this->headLink()->appendStylesheet($this->basePath('assets/cms-user/css/avatar.css'));
+$this->headScript()->appendFile($this->basePath('assets/cms-user/js/avatar.js'));
+$this->headScript()->appendFile($this->basePath('assets/cms-twbs/plugins/form-jasnyupload/fileinput.js'));
+
+// Set translation and namespace options here
+$this->formLabel()->setTranslatorTextDomain(__NAMESPACE__);
+$this->legend()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formMessages()->setTranslatorTextDomain(__NAMESPACE__);
+$this->formRow()->setTranslatorTextDomain(__NAMESPACE__);
+
+// Set form fields classes and placeholders here
+$form = $this->form;
+
+$form->setAttributes([
+        'class' => 'form-horizontal cms-form cmsuser-form cmsuser-form-edit-profile',
+        'role'  => 'form',
+    ])->setLabelAttributes([
+        'class' => 'panel-title',
+    ]);
+
+if ($form->has('username')) {
+    $form->get('username')->setOption('twbs', [
+        'icon' => [
+            'content' => 'user',
+            'placement' => 'prepend',
+        ],
+    ]);
+}
+
+$form->get('lastName')->setOption('twbs', [
+    'col' => ['class' => 'col-xs-12 col-sm-4'],
+    'firstName' => [
+        'type' => 'formGroupElement',
+        'content' => 'firstName',
+        'order' => 9050,
+        'placement' => 'append',
+    ],
+    'secondName' => [
+        'type' => 'formGroupElement',
+        'content' => 'secondName',
+        'order' => 9100,
+        'placement' => 'append',
+    ],
+]);
+
+$form->get('firstName')->setOption('twbs', [
+    'col' => ['class' => 'col-xs-12 col-sm-4'],
+]);
+
+if ($form->has('secondName')) {
+    $form->get('secondName')->setOption('twbs', [
+        'col' => ['class' => 'col-xs-12 col-sm-4'],
+    ]);
+}
+
+$form->get('mobilePhoneNumber')->setOption('twbs', [
+    'icon' => [
+        'content' => 'phone',
+        'placement' => 'prepend',
+    ],
+]);
+
+if ($form->has('locale')) {
+    $form->get('locale')->setOption('twbs', [
+        'icon' => [
+            'content' => 'globe',
+            'placement' => 'prepend',
+        ],
+    ]);
+}
+
+$form->get('submit')->setAttribute('value', 'Edit profile')
+    ->setOption('twbs', [
+        'element' => ['class' => 'btn-block'],
+        'col' => ['class' => 'col-xs-12 col-sm-8'],
+        'reset' => [
+            'type' => 'formGroupElement',
+            'content' => 'reset',
+            'order' => 9050,
+            'placement' => 'append',
+        ],
+    ]);
+
+if ($form->has('reset')) {
+    $form->get('reset')->setOption('twbs', [
+        'element' => ['class' => 'btn-block'],
+        'col' => ['class' => 'col-xs-12 col-sm-4'],
+    ]);
+}
+
+$form->prepare();
+
+?>
+<?= $this->form()->openTag($form); ?>
+  <div class="panel panel-primary">
+    <?php if ($form->getLabel()): ?>
+    <div class="panel-heading">
+      <?= $this->glyphicon('edit'); ?>&nbsp;&nbsp;<?= $this->formLabel($form); ?>
+    </div>
+    <?php endif; ?>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-9 col-sm-push-3 col-md-10 col-md-push-2">
+          <?= $this->formMessages($form); ?>
+          <?php if ($form->has('username')): ?>
+            <?= $this->formRow($form->get('username')); ?>
+          <?php endif; ?>
+          <?= $this->formRow($form->get('lastName')); ?>
+          <?= $this->formRow($form->get('birthday')); ?>
+          <?= $this->formRow($form->get('mobilePhoneNumber')); ?>
+          <?php if ($form->has('locale')): ?>
+            <?= $this->formRow($form->get('locale')); ?>
+          <?php endif; ?>
+        </div>
+        <div class="fileinput fileinput-new col-xs-12 col-sm-3 col-sm-pull-9 col-md-2 col-md-pull-10" data-provides="fileinput">
+          <div class="fileinput-new thumbnail avatar">
+            <!-- <img src="/assets/cms-user/avatar/dangerfield.png" alt="..." style="width: 100%"> -->
+            <?= $this->glyphicon('user'); ?>
+          </div>
+          <div class="fileinput-preview fileinput-exists img-responsive thumbnail" data-trigger="fileinput" style="max-width: 160px; max-height: 160px"></div>
+          <div>
+            <span class="btn btn-default btn-sm btn-file"><span class="fileinput-new"><?= $this->translate('Select Avatar', __NAMESPACE__) ?></span><span class="fileinput-exists"><?= $this->translate('Change', __NAMESPACE__) ?></span><?= $this->formFile($form->get('avatar')); ?></span>
+            <a href="#" class="btn btn-default btn-sm fileinput-exists" data-dismiss="fileinput"><?= $this->translate('Remove', __NAMESPACE__) ?></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <?php if ($form->has('captcha')): ?>
+        <?= $this->formRow($form->get('captcha')); ?>
+      <?php endif; ?>
+      <?php if ($form->has('csrf')): ?>
+        <?= $this->formRow($form->get('csrf')); ?>
+      <?php endif; ?>
+      <?= $this->formRow($form->get('submit')); ?>
+    </div>
+  </div>
+<?= $this->form()->closeTag();

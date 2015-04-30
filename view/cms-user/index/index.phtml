@@ -1,0 +1,43 @@
+<?php
+/**
+ * CoolMS2 User Module (http://www.coolms.com/)
+ *
+ * @link      http://github.com/coolms/user for the canonical source repository
+ * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
+ * @license   http://www.coolms.com/license/new-bsd New BSD License
+ * @author    Dmitry Popov <d.popov@altgraphic.com>
+ */
+
+namespace CmsUser;
+
+$this->headLink()->appendStylesheet($this->basePath('assets/cms-user/css/avatar.css'));
+$this->headScript()->appendFile($this->basePath('assets/cms-user/js/avatar.js'));
+
+?>
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-2">
+        <div class="fileinput-new thumbnail avatar">
+            <!-- <img src="/assets/cms-user/avatar/dangerfield.png" alt="..." style="width: 100%"> -->
+            <?= $this->glyphicon('user'); ?>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-10">
+<?php if ($this->cmsIdentity()): ?>
+  <h3><?= sprintf(
+      $this->translate('Welcome, %s!', __NAMESPACE__),
+      '<a href="' . $this->url('cms-user/default', ['action' => 'edit-profile']) .
+      '" class="text-success">' . $this->cmsUserDisplayName() . '</a>'
+    );
+  ?></h3>
+<?php else: ?>
+  <h3><?= sprintf(
+      $this->translate('Welcome, %s!', __NAMESPACE__),
+      '<span class="text-info">' . $this->cmsUserDisplayName() . '</span>'
+    );
+  ?></h3>
+  <div>
+    <?= $this->translate('Please follow the buttons at the top to navigate through the system', __NAMESPACE__); ?>
+  </div>
+<?php endif; ?>
+    </div>
+</div>
