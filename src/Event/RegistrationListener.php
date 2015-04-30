@@ -38,26 +38,26 @@ class RegistrationListener extends AbstractListenerAggregate
     public function onBootstrap(MvcEvent $e)
     {
         $app = $e->getApplication();
-        $sm  = $app->getServiceManager();
+        $services = $app->getServiceManager();
 
-        if (!$sm->has('CmsDoctrine\\ObjectManager')) {
+        if (!$services->has('CmsDoctrine\\ObjectManager')) {
             return;
         }
 
         $eventManager       = $app->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
 
-        $sharedEventManager->attach('CmsUser\Service\UserService', 'register', function($e) use ($sm)
+        $sharedEventManager->attach('CmsUser\Service\UserService', 'register', function($e) use ($services)
         {
             $user = $e->getParam('user');
             if ($user instanceof \CmsAuthorization\Mapping\RoleableInterface
-                && $sm->has('CmsAuthorization\\Options\\ModuleOptions')
+                && $services->has('CmsAuthorization\\Options\\ModuleOptions')
             ) {
                 /* @var $config \CmsAuthorization\Options\ModuleOptions */
-                $config = $sm->get('CmsAuthorization\\Options\\ModuleOptions');
+                $config = $services->get('CmsAuthorization\\Options\\ModuleOptions');
                 $roleClass = $config->getRoleClass();
                 /* @var $objectManager \Doctrine\Common\Persistence\ObjectManager */
-                $objectManager = $sm->get('CmsDoctrine\\ObjectManager');
+                $objectManager = $services->get('CmsDoctrine\\ObjectManager');
                 if ($defaultRole = $objectManager->find($roleClass, $config->getAuthenticatedRole())) {
                     $user->addRole($defaultRole);
                 }

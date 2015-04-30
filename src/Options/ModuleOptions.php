@@ -118,7 +118,7 @@ class ModuleOptions extends AbstractOptions implements
     /**
      * @var string
      */
-    protected $className = 'CmsUser\\Entity\\User';
+    protected $className = 'CmsUser\\Mapping\\UserInterface';
 
     /**
      * @var int
@@ -549,7 +549,7 @@ class ModuleOptions extends AbstractOptions implements
      * Set sender name.
      * 
      * @param string $senderName
-     * @return UserServiceOptionsInterface
+     * @return self
      */
     public function setSenderName($senderName)
     {

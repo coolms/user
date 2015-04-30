@@ -18,7 +18,7 @@ use Doctrine\Common\EventArgs,
 /**
  * The Blameable subscriber.
  *
- * @author Dmitry Popov <d.popov@altgraphic.com>
+ * @author  Dmitry Popov <d.popov@altgraphic.com>
  */
 class BlameableSubscriber extends BlameableListener
 {

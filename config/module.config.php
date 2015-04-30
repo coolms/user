@@ -65,40 +65,12 @@ return [
             'CmsUser\Controller\Admin' => 'CmsUser\Factory\Controller\AdminController',
         ],
     ],
-    'doctrine' => [
-        'driver' => [
-            'cmsuser_metadata_driver' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => [
-                    __DIR__ . '/../src/Entity',
-                 ],
-            ],
-            'orm_default' => [
-                'drivers' => [
-                    'CmsUser\Entity' => 'cmsuser_metadata_driver',
-                ],
-            ],
-        ],
-        'entity_resolver' => [
-            'orm_default' => [
-                'resolvers' => [
-                    'CmsUser\Mapping\UserInterface' => 'CmsUser\Entity\User',
-                ],
-            ],
-        ],
-    ],
-    'mappers' => [
-        'delegators' => [
-            'CmsUser\Entity\User' => ['CmsUser\Factory\Persistence\UserMapperDelegatorFactory'],
-        ],
-    ],
     'domain_services' => [
         'aliases' => [
-            'CmsUser\Entity\User' => 'CmsUser\Service\UserServiceInterface',
+            'CmsUser\Service\UserServiceInterface' => 'CmsUser\Service\UserService',
         ],
         'factories' => [
-            'CmsUser\Service\UserServiceInterface' => 'CmsUser\Factory\UserServiceFactory',
+            'CmsUser\Service\UserService' => 'CmsUser\Factory\UserServiceFactory',
         ],
     ],
     'form_elements' => [
@@ -532,7 +504,6 @@ return [
         ],
     ],
     'view_manager' => [
-        'display_exceptions' => true,
         'template_map' => [
             'cms-user/navbar-menu' => __DIR__ . '/../view/cms-user/index/navbar-menu.phtml',
             'cms-user/authentication/reset-password-success'

@@ -20,7 +20,7 @@ class UserMapperDelegatorFactory implements DelegatorFactoryInterface
      * {@inheritDoc}
      */
     public function createDelegatorWithName(
-        ServiceLocatorInterface $serviceLocator,
+        ServiceLocatorInterface $mappers,
         $name,
         $requestedName,
         $callback
@@ -31,15 +31,15 @@ class UserMapperDelegatorFactory implements DelegatorFactoryInterface
             return $mapper;
         }
 
-        $parentLocator = $serviceLocator->getServiceLocator();
+        $services = $mappers->getServiceLocator();
 
         /* @var $options \CmsUser\Options\ModuleOptions */
-        $options = $parentLocator->get('CmsUser\\Options\\ModuleOptions');
+        $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         $mapper->setIdentityFields($options->getIdentityFields());
 
         /* @var $passwordService \Zend\Crypt\Password\PasswordInterface */
-        $passwordService = $parentLocator->get($options->getPasswordService());
+        $passwordService = $services->get($options->getPasswordService());
         $mapper->setPasswordService($passwordService);
 
         return $mapper;
