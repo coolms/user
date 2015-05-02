@@ -21,13 +21,13 @@ class ChangePasswordFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $elements)
     {
         $services = $elements->getServiceLocator();
-        /* @var $options \CmsUser\Options\ModuleOptions */
+        /* @var $options \CmsUser\Options\FormOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         $creationOptions = $options->toArray();
         $creationOptions['label'] = 'Changing Password';
 
-        $form = $elements->get($options->getClassName(), $creationOptions);
+        $form = $elements->get($options->getUserEntityClass(), $creationOptions);
         $form->setName('change-password-form');
         $form->setElementGroup([
             'password',

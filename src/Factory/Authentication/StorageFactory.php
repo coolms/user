@@ -21,9 +21,9 @@ class StorageFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /* @var $options \CmsUser\Options\UserServiceOptionsInterface */
+        /* @var $options \CmsUser\Options\AuthenticationOptionsInterface */
         $options = $serviceLocator->get('CmsUser\\Options\\ModuleOptions');
 
-        return new DefaultStorage($serviceLocator->get('MapperManager')->get($options->getClassName()));
+        return new DefaultStorage($serviceLocator->get('MapperManager')->get($options->getUserEntityClass()));
     }
 }

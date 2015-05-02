@@ -29,7 +29,7 @@ class UserServiceInitializer implements InitializerInterface
 
             /* @var $options \CmsUser\Options\UserServiceOptionsInterface */
             $options = $services->get('CmsUser\\Options\\ModuleOptions');
-            $instance->setUserService($services->get('DomainServiceManager')->get($options->getClassName()));
+            $instance->setUserService($services->get('DomainServiceManager')->get($options->getUserEntityClass()));
         }
     }
 }

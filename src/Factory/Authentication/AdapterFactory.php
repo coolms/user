@@ -21,11 +21,11 @@ class AdapterFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /* @var $options \CmsUser\Options\UserServiceOptionsInterface */
+        /* @var $options \CmsUser\Options\AuthenticationOptionsInterface */
         $options = $serviceLocator->get('CmsUser\\Options\\ModuleOptions');
 
         return new DefaultAdapter(
-            $serviceLocator->get('MapperManager')->get($options->getClassName()),
+            $serviceLocator->get('MapperManager')->get($options->getUserEntityClass()),
             $options
         );
     }

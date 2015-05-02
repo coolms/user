@@ -23,6 +23,7 @@ use Zend\Form\FormInterface,
     CmsMailer\Service\MailServiceAwareTrait,
     CmsMailer\Service\MailServiceInterface,
     CmsUser\Mapping\UserInterface,
+    CmsUser\Options\UserServiceOptionsInterface,
     CmsUser\Persistence\UserMapperInterface;
 
 /**
@@ -81,11 +82,12 @@ class UserService extends DomainService implements
      * @param MailServiceInterface $mailService
      */
     public function __construct(
-        $options,
+        UserServiceOptionsInterface $options,
         ServiceManager $manager,
         PasswordGeneratorInterface $passwordGenerator,
         MailServiceInterface $mailService
     ) {
+        $this->setClassName($options->getUserEntityClass());
         parent::__construct($options, $manager);
         $this->setPasswordGenerator($passwordGenerator);
         $this->setMailService($mailService);
@@ -152,7 +154,7 @@ class UserService extends DomainService implements
         if (null === $this->registerForm) {
             $sm = $this->getServiceLocator();
             $this->setRegisterForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\Register'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\Register'));
         }
 
         return $this->registerForm;
@@ -199,7 +201,7 @@ class UserService extends DomainService implements
         if (null === $this->editProfileForm) {
             $sm = $this->getServiceLocator();
             $this->setEditProfileForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\EditProfile'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\EditProfile'));
         }
 
         return $this->editProfileForm;
@@ -275,7 +277,7 @@ class UserService extends DomainService implements
         if (null === $this->changePasswordForm) {
             $sm = $this->getServiceLocator();
             $this->setChangePasswordForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\ChangePassword'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\ChangePassword'));
         }
 
         return $this->changePasswordForm;
@@ -342,7 +344,7 @@ class UserService extends DomainService implements
         if (null === $this->resetPasswordForm) {
             $sm = $this->getServiceLocator();
             $this->setResetPasswordForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\ResetPassword'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\ResetPassword'));
         }
 
         return $this->resetPasswordForm;
@@ -457,7 +459,7 @@ class UserService extends DomainService implements
         if (null === $this->changeEmailForm) {
             $sm = $this->getServiceLocator();
             $this->setChangeEmailForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\ChangeEmail'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\ChangeEmail'));
         }
 
         return $this->changeEmailForm;
@@ -504,7 +506,7 @@ class UserService extends DomainService implements
         if (null === $this->changeSecurityQuestionForm) {
             $sm = $this->getServiceLocator();
             $this->setChangeSecurityQuestionForm($sm->getServiceLocator()
-                ->get($this->formElementManager)->get('CmsUser\Form\ChangeSecurityQuestion'));
+                ->get($this->formElementManager)->get('CmsUser\\Form\\ChangeSecurityQuestion'));
         }
 
         return $this->changeSecurityQuestionForm;

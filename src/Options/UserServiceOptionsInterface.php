@@ -15,17 +15,17 @@ interface UserServiceOptionsInterface
     /**
      * Set user entity class name.
      *
-     * @param string $class
+     * @param string $className
      * @return self
      */
-    public function setClassName($class);
+    public function setUserEntityClass($className);
 
     /**
      * Get user entity class name.
      *
      * @return string
      */
-    public function getClassName();
+    public function getUserEntityClass();
 
     /**
      * Set default user state on registration.
@@ -101,4 +101,9 @@ interface UserServiceOptionsInterface
      * @return string
      */
     public function getSenderName();
+
+    /**
+     * @return array
+     */
+    public function toArray();
 }

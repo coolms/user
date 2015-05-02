@@ -56,4 +56,11 @@ interface AuthenticationOptionsInterface
      * @return string
      */
     public function getAuthenticationService();
+
+    /**
+     * Get user entity class name.
+     *
+     * @return string
+     */
+    public function getUserEntityClass();
 }

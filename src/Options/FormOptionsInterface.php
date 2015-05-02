@@ -28,4 +28,11 @@ interface FormOptionsInterface extends CommonOptionsInterface
      * @return bool
      */
     public function getEnableUsername();
+
+    /**
+     * Get user entity class name.
+     *
+     * @return string
+     */
+    public function getUserEntityClass();
 }

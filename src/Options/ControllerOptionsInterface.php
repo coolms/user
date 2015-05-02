@@ -123,4 +123,11 @@ interface ControllerOptionsInterface
      * @return bool
      */
     public function getEnableUsername();
+
+    /**
+     * Get user entity class name.
+     *
+     * @return string
+     */
+    public function getUserEntityClass();
 }

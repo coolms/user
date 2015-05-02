@@ -8,11 +8,11 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Factory\Controller;
+namespace CmsUser\Factory\Mvc\Controller;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Controller\RegistrationController;
+    CmsUser\Mvc\Controller\RegistrationController;
 
 class RegistrationControllerFactory implements FactoryInterface
 {
@@ -22,13 +22,13 @@ class RegistrationControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        /* @var $options \CmsUser\Options\ModuleOptions */
+        /* @var $options \CmsUser\Options\ControllerOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
         /* @var $formElementManager \Zend\Form\FormElementManager */
         $formElementManager = $services->get('FormElementManager');
 
         return new RegistrationController(
-            $services->get('DomainServiceManager')->get($options->getClassName()),
+            $services->get('DomainServiceManager')->get($options->getUserEntityClass()),
             $options,
             $formElementManager->has('CmsAuthenticationIdentity')
                 ? $formElementManager->get('CmsAuthenticationIdentity')

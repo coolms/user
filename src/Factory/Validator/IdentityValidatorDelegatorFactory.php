@@ -37,7 +37,7 @@ class IdentityValidatorDelegatorFactory implements DelegatorFactoryInterface
 
         $services = $validators->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\ModuleOptions */
+        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         $identityFields = $options->getIdentityFields();
@@ -54,7 +54,7 @@ class IdentityValidatorDelegatorFactory implements DelegatorFactoryInterface
         }
 
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
-        $userMapper = $services->get('MapperManager')->get($options->getClassName());
+        $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());
 
         $identityValidator->attachByName('Callback', [
             'messages' => [

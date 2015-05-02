@@ -118,7 +118,7 @@ class ModuleOptions extends AbstractOptions implements
     /**
      * @var string
      */
-    protected $className = 'CmsUser\\Mapping\\UserInterface';
+    protected $userEntityClass = 'CmsUser\\Mapping\\UserInterface';
 
     /**
      * @var int
@@ -463,18 +463,18 @@ class ModuleOptions extends AbstractOptions implements
     /**
      * {@inheritDoc}
      */
-    public function setClassName($class)
+    public function setUserEntityClass($className)
     {
-        $this->className = (string) $class;
+        $this->userEntityClass = (string) $className;
         return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getClassName()
+    public function getUserEntityClass()
     {
-        return $this->className;
+        return $this->userEntityClass;
     }
 
     /**

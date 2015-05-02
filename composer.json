@@ -14,7 +14,8 @@
   "require" : {
     "php" : ">=5.4.0",
     "coolms/authentication" : "dev-master@dev",
-    "coolms/common" : "dev-master@dev"
+    "coolms/common" : "dev-master@dev",
+    "coolms/mailer" : "dev-master@dev"
   },
   "require-dev" : {
     "phpunit/phpunit" : "~4.5"
@@ -35,5 +36,8 @@
   }, {
     "type" : "vcs",
     "url" : "https://www.github.com/coolms/common"
+  }, {
+    "type" : "vcs",
+    "url" : "https://www.github.com/coolms/mailer"
   } ]
 }

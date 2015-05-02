@@ -26,7 +26,7 @@ class NoUsernameExistsValidatorFactory implements FactoryInterface
         /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
-        $userMapper = $services->get('MapperManager')->get($options->getClassName());
+        $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());
 
         $identity = null;
         if ($services->has($options->getAuthenticationService())) {

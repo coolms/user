@@ -55,14 +55,14 @@ return [
     'controllers' => [
         'factories' => [
             'CmsUser\Controller\Authentication'
-                => 'CmsUser\Factory\Controller\AuthenticationControllerFactory',
+                => 'CmsUser\Factory\Mvc\Controller\AuthenticationControllerFactory',
             'CmsUser\Controller\Index'
-                => 'CmsUser\Factory\Controller\IndexControllerFactory',
+                => 'CmsUser\Factory\Mvc\Controller\IndexControllerFactory',
             'CmsUser\Controller\Registration'
-                => 'CmsUser\Factory\Controller\RegistrationControllerFactory',
+                => 'CmsUser\Factory\Mvc\Controller\RegistrationControllerFactory',
         ],
         'invokables' => [
-            'CmsUser\Controller\Admin' => 'CmsUser\Factory\Controller\AdminController',
+            'CmsUser\Controller\Admin' => 'CmsUser\Mvc\Controller\AdminController',
         ],
     ],
     'domain_services' => [
@@ -113,7 +113,6 @@ return [
         ],
     ],
     'listeners' => [
-        'CmsUser\Event\BlameableListener' => 'CmsUser\Event\BlameableListener',
         'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
     ],
     'mappers' => [
@@ -459,7 +458,6 @@ return [
     ],
     'service_manager' => [
         'invokables' => [
-            'CmsUser\Event\BlameableListener' => 'CmsUser\Event\BlameableListener',
             'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
             'CmsUser\MailService' => 'CmsMailer\Service\MailService',
         ],

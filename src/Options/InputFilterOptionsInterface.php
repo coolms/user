@@ -73,17 +73,23 @@ interface InputFilterOptionsInterface extends PasswordOptionsInterface
     public function getUsernameRegexPattern();
 
     /**
-     * Set user entity class name.
+     * Get authentication service
      *
-     * @param string $class
-     * @return self
+     * @return string
      */
-    public function setClassName($class);
+    public function getAuthenticationService();
+
+    /**
+     * Get authentication identity fields.
+     *
+     * @return array
+     */
+    public function getIdentityFields();
 
     /**
      * Get user entity class name.
      *
      * @return string
      */
-    public function getClassName();
+    public function getUserEntityClass();
 }

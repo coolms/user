@@ -8,11 +8,11 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Factory\Controller;
+namespace CmsUser\Factory\Mvc\Controller;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Controller\IndexController;
+    CmsUser\Mvc\Controller\IndexController;
 
 class IndexControllerFactory implements FactoryInterface
 {
@@ -22,11 +22,11 @@ class IndexControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        /* @var $options \CmsUser\Options\ModuleOptions */
+        /* @var $options \CmsUser\Options\ControllerOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         return new IndexController(
-            $services->get('DomainServiceManager')->get($options->getClassName()),
+            $services->get('DomainServiceManager')->get($options->getUserEntityClass()),
             $options
         );
     }

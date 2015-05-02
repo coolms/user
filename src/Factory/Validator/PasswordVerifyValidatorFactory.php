@@ -25,7 +25,7 @@ class PasswordVerifyValidatorFactory implements FactoryInterface
     {
         $services = $validators->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\ModuleOptions */
+        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         $userMapper = null;
@@ -37,7 +37,7 @@ class PasswordVerifyValidatorFactory implements FactoryInterface
 
             if ($authService->hasIdentity()) {
                 /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
-                $userMapper = $services->get('MapperManager')->get($options->getClassName());
+                $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());
                 /* @var $identity \CmsUser\Mapping\UserInterface */
                 $identity = $authService->getIdentity();
             }

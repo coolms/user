@@ -35,7 +35,7 @@ class UserServiceFactory implements FactoryInterface
                     ->setFromName($options->getSenderName());
 
         return new UserService(
-            $options->toArray(),
+            $options,
             $domainServices,
             $passwordGenerator,
             $mailService
