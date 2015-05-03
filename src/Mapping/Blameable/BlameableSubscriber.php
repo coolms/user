@@ -43,7 +43,7 @@ class BlameableSubscriber extends BlameableListener
         parent::__construct();
 
         if (null !== $useAssociations) {
-            $this->useAssociations = $useAssociations;
+            $this->useAssociations = (bool) $useAssociations;
         }
     }
 
@@ -76,12 +76,16 @@ class BlameableSubscriber extends BlameableListener
      */
     protected function updateField($object, $ea, $meta, $field)
     {
+        $newValue = $this->getUserValue($meta, $field);
+        if (null === $newValue) {
+            return;
+        }
+
         $property = $meta->getReflectionProperty($field);
         $oldValue = $property->getValue($object);
-        $newValue = $this->getUserValue($meta, $field);
 
         //if blame is reference, persist object
-        if ($meta->hasAssociation($field)) {
+        if (is_object($newValue) && $meta->hasAssociation($field)) {
             $ea->getObjectManager()->persist($newValue);
         }
 
