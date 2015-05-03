@@ -30,6 +30,11 @@
   "autoload-dev" : {
     "psr-4": { "CmsUserTest\\" : "tests/" }
   },
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "0.1.x-dev"
+    }
+  },
   "repositories" : [ {
     "type" : "vcs",
     "url" : "https://www.github.com/coolms/authentication"
