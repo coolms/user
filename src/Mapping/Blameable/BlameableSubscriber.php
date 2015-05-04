@@ -33,11 +33,13 @@ class BlameableSubscriber extends BlameableListener
     public function __construct($useAssociations = null)
     {
         if (!class_exists(TimestampableSubscriber::CHANGEABLE_ODM_ANNOTATION_ALIAS)) {
-            class_alias(TimestampableSubscriber::CHANGEABLE_ANNOTATION, TimestampableSubscriber::CHANGEABLE_ODM_ANNOTATION_ALIAS);
+            class_alias(TimestampableSubscriber::CHANGEABLE_ANNOTATION,
+                TimestampableSubscriber::CHANGEABLE_ODM_ANNOTATION_ALIAS);
         }
 
         if (!class_exists(TimestampableSubscriber::CHANGEABLE_ORM_ANNOTATION_ALIAS)) {
-            class_alias(TimestampableSubscriber::CHANGEABLE_ANNOTATION, TimestampableSubscriber::CHANGEABLE_ORM_ANNOTATION_ALIAS);
+            class_alias(TimestampableSubscriber::CHANGEABLE_ANNOTATION,
+                TimestampableSubscriber::CHANGEABLE_ORM_ANNOTATION_ALIAS);
         }
 
         parent::__construct();
@@ -55,11 +57,16 @@ class BlameableSubscriber extends BlameableListener
         parent::loadClassMetadata($eventArgs);
 
         $meta = $eventArgs->getClassMetadata();
-        $name = $meta->getName();
+        $name = $meta->name;
 
-        if ($this->useAssociations && !empty(self::$configurations[$this->name][$name]['mappings'])) {
-            $this->getEventAdapter($eventArgs)
-                ->remap($meta, self::$configurations[$this->name][$name]['mappings'], $this->user);
+        if (!empty(self::$configurations[$this->name][$name]['fields'])) {
+            $fields = self::$configurations[$this->name][$name]['fields'];
+            $ea = $this->getEventAdapter($eventArgs);
+            if ($this->useAssociations) {
+                $ea->remapFieldsToAssociations($meta, $fields);
+            } else {
+                $ea->remapAssociationsToFields($meta, $fields);
+            }
         }
     }
 
@@ -85,7 +92,7 @@ class BlameableSubscriber extends BlameableListener
         $oldValue = $property->getValue($object);
 
         //if blame is reference, persist object
-        if (is_object($newValue) && $meta->hasAssociation($field)) {
+        if ($meta->hasAssociation($field)) {
             $ea->getObjectManager()->persist($newValue);
         }
 

@@ -37,78 +37,47 @@ class Annotation extends BaseAnnotation
     {
         $class = $this->getMetaReflectionClass($meta);
 
-        if ($class->hasProperty(static::CHANGEDBY_PROPERTY)) {
-            $property = $class->getProperty(static::CHANGEDBY_PROPERTY);
-            $changeable = $this->reader->getClassAnnotation($class, TimestampableAnnotation::CHANGEABLE);
+        $properties = [static::CHANGEDBY_PROPERTY, static::CREATEDBY_PROPERTY, static::UPDATEDBY_PROPERTY];
+        foreach ($properties as $propertyName) {
+            if (!$class->hasProperty($propertyName)) {
+                continue;
+            }
+
+            $property = $class->getProperty($propertyName);
+            if ($meta->isMappedSuperclass && !$property->isPrivate() ||
+                $meta->isInheritedField($propertyName) ||
+                $meta->isInheritedAssociation($propertyName) ||
+                $meta->hasField($propertyName) ||
+                $meta->hasAssociation($propertyName)
+            ) {
+                continue;
+            }
+
             $blameable = $this->reader->getPropertyAnnotation($property, static::BLAMEABLE);
+            if (!$blameable) {
+                continue;
+            }
 
-            if ($blameable) {
-                if ($meta->isMappedSuperclass && !$property->isPrivate() ||
-                    $meta->isInheritedField($property->name) ||
-                    isset($meta->associationMappings[$property->name]['inherited'])
-                ) {
-                    if (!empty($changeable->field)) {
-                        $config['change'][] = [
-                            'field' => $property->name,
-                            'trackedField' => $changeable->field,
-                            'value' => $changeable->value,
-                        ];
-                    }
-                } else {
-                    if (!$meta->hasField(static::CHANGEDBY_PROPERTY)
-                        && !$meta->hasAssociation(static::CHANGEDBY_PROPERTY)
-                    ) {
-                        $config['mappings'][static::CHANGEDBY_PROPERTY] = [
-                            'fieldName' => $property->name,
-                            'type' => 'string',
-                            'length' => 255,
-                            'nullable' => true,
-                        ];
-                        $meta->mapField($config['mappings'][static::CHANGEDBY_PROPERTY]);
-                    }
-
-                    if (!empty($changeable->field) && !$blameable->field) {
-                        $blameable->field = $changeable->field;
-                    }
+            if ($propertyName === static::CHANGEDBY_PROPERTY) {
+                $changeable = $this->reader->getClassAnnotation($class, TimestampableAnnotation::CHANGEABLE);
+                if (!empty($changeable->field) && !$blameable->field) {
+                    $blameable->field = $changeable->field;
                 }
             }
-        }
 
-        if ($class->hasProperty(static::CREATEDBY_PROPERTY)) {
-            $property = $class->getProperty(static::CREATEDBY_PROPERTY);
-            if (!($meta->isMappedSuperclass && !$property->isPrivate())
-                && !$meta->isInheritedField($property->name)
-                && !isset($meta->associationMappings[$property->name]['inherited'])
-                && !$meta->hasField(static::CREATEDBY_PROPERTY)
-                && !$meta->hasAssociation(static::CREATEDBY_PROPERTY)
-                && $this->reader->getPropertyAnnotation($property, static::BLAMEABLE)
-            ) {
-                $config['mappings'][static::CREATEDBY_PROPERTY] = [
-                    'fieldName' => $property->name,
+            if ($property->getDeclaringClass()->getName() === $meta->getName()) {
+                $config['fields'][] = $propertyName;
+                $meta->mapField([
+                    'fieldName' => $propertyName,
                     'type' => 'string',
                     'length' => 255,
-                    'nullable' => false,
-                ];
-                $meta->mapField($config['mappings'][static::CREATEDBY_PROPERTY]);
-            }
-        }
-
-        if ($class->hasProperty(static::UPDATEDBY_PROPERTY)) {
-            $property = $class->getProperty(static::UPDATEDBY_PROPERTY);
-            if (!($meta->isMappedSuperclass && !$property->isPrivate())
-                && !$meta->isInheritedField($property->name)
-                && !isset($meta->associationMappings[$property->name]['inherited'])
-                && !$meta->hasField(static::UPDATEDBY_PROPERTY)
-                && !$meta->hasAssociation(static::UPDATEDBY_PROPERTY)
-                && $this->reader->getPropertyAnnotation($property, static::BLAMEABLE)
-            ) {
-                $config['mappings'][static::UPDATEDBY_PROPERTY] = [
-                    'fieldName' => $property->name,
-                    'type' => 'string',
-                    'length' => 255,
-                    'nullable' => true,
-                ];
-                $meta->mapField($config['mappings'][static::UPDATEDBY_PROPERTY]);
+                    'nullable' => $propertyName === static::CREATEDBY_PROPERTY ? false : true,
+                ]);
+            } else {
+                $meta->mapField([
+                    'fieldName' => $propertyName,
+                    'inherited' => $property->getDeclaringClass()->getName(),
+                ]);
             }
         }
 

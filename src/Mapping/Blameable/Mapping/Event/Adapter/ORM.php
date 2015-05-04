@@ -22,32 +22,61 @@ final class ORM extends BaseAdapterORM implements BlameableAdapter
     /**
      * {@inheritDoc}
      */
-    public function remap($meta, array $mappings, $value)
+    public function remapFieldsToAssociations($meta, array $fields)
     {
-        if (!$mappings) {
-            return;
-        }
-
-        foreach ($mappings as $field => $mapping) {
-            if (is_object($value) || null === $value) {
-
-                if ($meta->hasField($field)) {
-                    unset($meta->fieldMappings[$field]);
-                }
-
-                $meta->mapManyToOne([
-                    'fieldName' => $field,
-                    'targetEntity' => 'CmsUser\\Mapping\\UserInterface',
-                    'cascade' => ['persist', 'detach'],
-                    'joinColumns' => [
-                        [
-                            'nullable' => $mapping['nullable'],
-                            'onDelete' => $mapping['nullable'] ? 'SET NULL' : 'RESTRICT',
-                            'onUpdate' => 'CASCADE',
-                        ],
-                    ],
-                ]);
+        foreach ($fields as $field) {
+            if (!$meta->hasField($field)) {
+                continue;
             }
+
+            $mapping = [
+                'fieldName' => $field,
+                'targetEntity' => 'CmsUser\\Mapping\\UserInterface',
+            ];
+
+            if ($meta->isInheritedField($field)) {
+                $mapping['inherited'] = $meta->fieldMappings[$field]['inherited'];
+            } else {
+                $mapping['cascade'] = ['persist', 'detach'];
+                $nullable = (bool) $meta->fieldMappings[$field]['nullable'];
+                $mapping['joinColumns'] = [
+                    [
+                        'nullable' => $nullable,
+                        'onDelete' => $nullable ? 'SET NULL' : 'RESTRICT',
+                        'onUpdate' => 'CASCADE',
+                    ],
+                ];
+            }
+
+            unset($meta->fieldMappings[$field]);
+            $meta->mapManyToOne($mapping);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function remapAssociationsToFields($meta, array $fields)
+    {
+        foreach ($fields as $field) {
+            if (!$meta->hasAssociation($field)) {
+                continue;
+            }
+
+            $mapping = [
+                'fieldName' => $field,
+                'type' => 'string',
+                'length' => 255,
+            ];
+
+            if ($meta->isInheritedAssociation($field)) {
+                $mapping['inherited'] = $meta->associationMappings[$field]['inherited'];
+            } elseif (isset($meta->associationMappings[$field]['joinColumns'][0]['nullable'])) {
+                $mapping['nullable'] = (bool) $meta->associationMappings[$field]['joinColumns'][0]['nullable'];
+            }
+
+            unset($meta->associationMappings[$field]);
+            $meta->mapField($mapping);
         }
     }
 }
