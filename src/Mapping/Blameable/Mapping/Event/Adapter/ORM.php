@@ -22,7 +22,7 @@ final class ORM extends BaseAdapterORM implements BlameableAdapter
     /**
      * {@inheritDoc}
      */
-    public function remapFieldsToAssociations($meta, array $fields)
+    public function remapFieldsToAssociations($meta, array $fields, $targetEntity)
     {
         foreach ($fields as $field) {
             if (!$meta->hasField($field)) {
@@ -31,7 +31,7 @@ final class ORM extends BaseAdapterORM implements BlameableAdapter
 
             $mapping = [
                 'fieldName' => $field,
-                'targetEntity' => 'CmsUser\\Mapping\\UserInterface',
+                'targetEntity' => $targetEntity,
             ];
 
             if ($meta->isInheritedField($field)) {

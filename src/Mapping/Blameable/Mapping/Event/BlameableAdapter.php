@@ -22,8 +22,9 @@ interface BlameableAdapter extends BaseBlameableAdapter
     /**
      * @param ClassMetadata $meta
      * @param array $fields
+     * @param string $targetEntity
      */
-    public function remapFieldsToAssociations($meta, array $fields);
+    public function remapFieldsToAssociations($meta, array $fields, $targetEntity);
 
     /**
      * @param ClassMetadata $meta

@@ -28,9 +28,17 @@ class BlameableSubscriber extends BlameableListener
     protected $useAssociations = true;
 
     /**
-     * __construct
+     * @var string
      */
-    public function __construct($useAssociations = null)
+    protected $userClassName;
+
+    /**
+     * __construct
+     *
+     * @param string $userClassName
+     * @param bool $useAssociations
+     */
+    public function __construct($userClassName = null, $useAssociations = null)
     {
         if (!class_exists(TimestampableSubscriber::CHANGEABLE_ODM_ANNOTATION_ALIAS)) {
             class_alias(TimestampableSubscriber::CHANGEABLE_ANNOTATION,
@@ -47,6 +55,20 @@ class BlameableSubscriber extends BlameableListener
         if (null !== $useAssociations) {
             $this->useAssociations = (bool) $useAssociations;
         }
+
+        if (null !== $userClassName) {
+            $this->setUserClassName($userClassName);
+        }
+    }
+
+    /**
+     * @param string $userClassName
+     * @return self
+     */
+    public function setUserClassName($userClassName)
+    {
+        $this->userClassName = (string) $userClassName;
+        return $this;
     }
 
     /**
@@ -62,8 +84,8 @@ class BlameableSubscriber extends BlameableListener
         if (!empty(self::$configurations[$this->name][$name]['fields'])) {
             $fields = self::$configurations[$this->name][$name]['fields'];
             $ea = $this->getEventAdapter($eventArgs);
-            if ($this->useAssociations) {
-                $ea->remapFieldsToAssociations($meta, $fields);
+            if ($this->userClassName && $this->useAssociations) {
+                $ea->remapFieldsToAssociations($meta, $fields, $this->userClassName);
             } else {
                 $ea->remapAssociationsToFields($meta, $fields);
             }
