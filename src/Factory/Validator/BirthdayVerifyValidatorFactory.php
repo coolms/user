@@ -28,8 +28,8 @@ class BirthdayVerifyValidatorFactory implements FactoryInterface
         $options = $services->get('CmsUser\\Options\\ModuleOptions');
 
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
-        $userMapper     = $services->get('MapperManager')->get($options->getUserEntityClass());
-        $identityField  = $services->get('FormElementManager')->get('CmsAuthenticationIdentity')->getName();
+        $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());
+        $identityField = $services->get('FormElementManager')->get('CmsAuthenticationIdentity')->getName();
 
         $validatorChain = new ValidatorChain();
         $validatorChain->attachByName('Callback', [
