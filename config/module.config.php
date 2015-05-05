@@ -120,7 +120,8 @@ return [
             'CmsUser\Mapping\UserInterface' => 'CmsUser\Persistence\UserMapperInterface',
         ],
         'delegators' => [
-            'CmsUser\Persistence\UserMapperInterface' => ['CmsUser\Factory\Persistence\UserMapperDelegatorFactory'],
+            'CmsUser\Persistence\UserMapperInterface'
+                => ['CmsUser\Factory\Persistence\UserMapperDelegatorFactory'],
         ],
     ],
     'navigation' => [
@@ -491,7 +492,8 @@ return [
     ],
     'validators' => [
         'delegators' => [
-            'CmsAuthenticationIdentity' => ['CmsUser\Factory\Validator\IdentityValidatorDelegatorFactory'],
+            'CmsAuthenticationIdentity'
+                => ['CmsUser\Factory\Validator\IdentityValidatorDelegatorFactory'],
         ],
         'factories' => [
             'CmsUserAnswerVerify' => 'CmsUser\Factory\Validator\AnswerVerifyValidatorFactory',
