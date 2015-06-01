@@ -38,26 +38,14 @@ msgstr "Создать аккаунт"
 msgid "Registration is disabled"
 msgstr "Регистрация отключена"
 
-msgid "Reseting Password"
-msgstr "Сброс пароля"
-
-msgid "Reseting password"
+msgid "Resetting Password"
 msgstr "Сброс пароля"
 
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
-msgid "Reset password"
-msgstr "Сбросить пароль"
-
 msgid "Changing Password"
 msgstr "Изменение пароля"
-
-msgid "Changing password"
-msgstr "Изменение пароля"
-
-msgid "Change password"
-msgstr "Изменить пароль"
 
 msgid "Change Password"
 msgstr "Изменить пароль"
@@ -65,19 +53,10 @@ msgstr "Изменить пароль"
 msgid "New Password"
 msgstr "Новый пароль"
 
-msgid "New password"
-msgstr "Новый пароль"
-
 msgid "Changing Email Address"
 msgstr "Изменение адреса эл.почты"
 
-msgid "Changing email address"
-msgstr "Изменение адреса эл.почты"
-
 msgid "Change Email"
-msgstr "Изменить адрес эл.почты"
-
-msgid "Change email"
 msgstr "Изменить адрес эл.почты"
 
 msgid "User Home"
@@ -86,13 +65,7 @@ msgstr "Личный кабинет"
 msgid "Editing Profile"
 msgstr "Редактирование профиля"
 
-msgid "Editing profile"
-msgstr "Редактирование профиля"
-
 msgid "Edit Profile"
-msgstr "Редактировать профиль"
-
-msgid "Edit profile"
 msgstr "Редактировать профиль"
 
 msgid "Reset"
@@ -132,9 +105,6 @@ msgid "Your Email"
 msgstr "Ваш адрес эл.почты"
 
 msgid "New Email"
-msgstr "Новый адрес эл.почты"
-
-msgid "New email"
 msgstr "Новый адрес эл.почты"
 
 msgid "Password"

@@ -22,8 +22,8 @@ return [
     "Your answer is wrong. Please provide the correct answer" => "Неверный ответ. Пожалуйста, введите верный ответ на вопрос",
 
     // CmsUser\Factory\Validator\BirthdayValidatorFactory
-    "The date of birth must be not earlier than %min%" => "Дата рождения должна быть не ранее %min%",
-    "The date of birth must be not later than %max%" => "Дата рождения должна быть не позднее %max%",
+    "The date of birth must be not earlier than %min% inclusive" => "Дата рождения должна быть не ранее %min% включительно",
+    "The date of birth must be not later than %max% inclusive" => "Дата рождения должна быть не позднее %max% включительно",
 
     // CmsUser\Factory\Validator\BirthdayVerifyValidatorFactory
     "Your birthday is wrong. Please provide the correct birthday" => "Неверная дата рождения. Пожалуйста, введите правильную дату",

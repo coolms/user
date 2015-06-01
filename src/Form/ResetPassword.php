@@ -32,7 +32,7 @@ class ResetPassword extends Form
 
         // Setting some defaults
         if (null === $this->getLabel()) {
-            $this->setLabel('Reseting Password');
+            $this->setLabel('Resetting Password');
         }
     }
 

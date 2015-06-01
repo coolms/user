@@ -35,7 +35,7 @@ class BirthdayValidatorFactory implements FactoryInterface
         $validatorChain->attachByName('GreaterThan', [
             'messages' => [
                 GreaterThan::NOT_GREATER_INCLUSIVE => 'The date of birth '
-                . 'must be not earlier than %min%',
+                    . 'must be not earlier than %min% inclusive',
             ],
             'messageVariables' => [
                 'min' => ['abstractOptions' => 'fmt'],
@@ -49,7 +49,7 @@ class BirthdayValidatorFactory implements FactoryInterface
         $validatorChain->attachByName('LessThan', [
             'messages' => [
                 LessThan::NOT_LESS_INCLUSIVE => 'The date of birth '
-                    . 'must be not later than %max%',
+                    . 'must be not later than %max% inclusive',
             ],
             'messageVariables' => [
                 'max' => ['abstractOptions' => 'fmt'],
