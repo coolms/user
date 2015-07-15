@@ -10,7 +10,10 @@
 
 namespace CmsUser\Factory\Validator;
 
-use Zend\ServiceManager\FactoryInterface,
+use DateTime,
+    IntlDateFormatter,
+    Locale,
+    Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\GreaterThan,
     Zend\Validator\LessThan,
@@ -25,13 +28,13 @@ class BirthdayValidatorFactory implements FactoryInterface
     {
         $validatorChain = new ValidatorChain();
 
-        $intl = new \IntlDateFormatter(
-            \Locale::getDefault(),
-            \IntlDateFormatter::LONG,
-            \IntlDateFormatter::NONE
+        $intl = new IntlDateFormatter(
+            Locale::getDefault(),
+            IntlDateFormatter::LONG,
+            IntlDateFormatter::NONE
         );
 
-        $date = (new \DateTime('now'))->modify('-100 years');
+        $date = (new DateTime('now'))->modify('-100 years');
         $validatorChain->attachByName('GreaterThan', [
             'messages' => [
                 GreaterThan::NOT_GREATER_INCLUSIVE => 'The date of birth '
@@ -45,7 +48,7 @@ class BirthdayValidatorFactory implements FactoryInterface
             'inclusive' => true,
         ], true);
 
-        $date = (new \DateTime('now'))->modify('-18 years');
+        $date = (new DateTime('now'))->modify('-18 years');
         $validatorChain->attachByName('LessThan', [
             'messages' => [
                 LessThan::NOT_LESS_INCLUSIVE => 'The date of birth '
