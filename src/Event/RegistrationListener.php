@@ -12,6 +12,7 @@ namespace CmsUser\Event;
 
 use Zend\EventManager\AbstractListenerAggregate,
     Zend\EventManager\EventManagerInterface,
+    Zend\Http\Request,
     Zend\Mvc\MvcEvent;
 
 /**
@@ -37,6 +38,10 @@ class RegistrationListener extends AbstractListenerAggregate
      */
     public function onBootstrap(MvcEvent $e)
     {
+        if (!$e->getRequest() instanceof HttpRequest) {
+            return;
+        }
+
         $app = $e->getApplication();
         $services = $app->getServiceManager();
 

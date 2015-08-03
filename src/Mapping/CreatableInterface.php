@@ -8,37 +8,24 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable\Traits;
+namespace CmsUser\Mapping;
 
-use CmsUser\Mapping\UserInterface;
-
-trait CreatableTrait
+/**
+ * @author Dmitry Popov <d.popov@altgraphic.com>
+ */
+interface CreatableInterface
 {
-    /**
-     * @var UserInterface
-     *
-     * @Gedmo\Blameable(on="create")
-     * @Form\Exclude()
-     */
-    protected $createdBy;
-
     /**
      * Sets createdBy
      *
      * @param UserInterface $createdBy
      */
-    public function setCreatedBy(UserInterface $createdBy)
-    {
-        $this->createdBy = $createdBy;
-    }
+    public function setCreatedBy(UserInterface $createdBy);
 
     /**
-     * Retrieves createdBy
+     * Returns createdBy
      *
      * @return UserInterface
      */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
+    public function getCreatedBy();
 }

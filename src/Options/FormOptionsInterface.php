@@ -10,9 +10,9 @@
 
 namespace CmsUser\Options;
 
-use CmsCommon\Form\CommonOptionsInterface;
+use CmsCommon\Form\Options\FormOptionsInterface as CommonFormOptionsInterface;
 
-interface FormOptionsInterface extends CommonOptionsInterface
+interface FormOptionsInterface extends CommonFormOptionsInterface
 {
     /**
      * Set enable username.

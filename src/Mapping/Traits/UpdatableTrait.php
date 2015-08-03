@@ -8,7 +8,7 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable\Traits;
+namespace CmsUser\Mapping\Traits;
 
 use CmsUser\Mapping\UserInterface;
 
@@ -17,7 +17,7 @@ trait UpdatableTrait
     /**
      * @var UserInterface
      *
-     * @Gedmo\Blameable(on="update")
+     * @ORM\Blameable(on="update")
      * @Form\Exclude()
      */
     protected $updatedBy;

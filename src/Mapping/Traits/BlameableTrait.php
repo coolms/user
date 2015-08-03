@@ -8,15 +8,11 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable;
+namespace CmsUser\Mapping\Traits;
 
-/**
- * @author Dmitry Popov <d.popov@altgraphic.com>
- */
-interface BlameableInterface extends
-    CreatableInterface,
-    UpdatableInterface,
-    ChangeableInterface
+trait BlameableTrait
 {
-    
+    use CreatableTrait,
+        UpdatableTrait,
+        ChangeableTrait;
 }

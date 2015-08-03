@@ -11,7 +11,7 @@
 namespace CmsUser\Options;
 
 use Zend\Stdlib\AbstractOptions,
-    CmsCommon\Form\CommonOptionsTrait;
+    CmsCommon\Form\Options\Traits\FormOptionsTrait;
 
 class ModuleOptions extends AbstractOptions implements
     AuthenticationOptionsInterface,
@@ -21,7 +21,7 @@ class ModuleOptions extends AbstractOptions implements
     UserServiceOptionsInterface,
     ViewHelperServiceOptionsInterface
 {
-    use CommonOptionsTrait;
+    use FormOptionsTrait;
 
     /**
      * Turn off strict options mode

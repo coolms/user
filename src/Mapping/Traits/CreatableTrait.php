@@ -8,37 +8,37 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable\Traits;
+namespace CmsUser\Mapping\Traits;
 
 use CmsUser\Mapping\UserInterface;
 
-trait ChangeableTrait
+trait CreatableTrait
 {
     /**
      * @var UserInterface
      *
-     * @Gedmo\Blameable(on="change",field={})
+     * @ORM\Blameable(on="create")
      * @Form\Exclude()
      */
-    protected $changedBy;
+    protected $createdBy;
 
     /**
-     * Sets changedBy
+     * Sets createdBy
      *
-     * @param UserInterface $changedBy
+     * @param UserInterface $createdBy
      */
-    public function setChangedBy(UserInterface $changedBy)
+    public function setCreatedBy(UserInterface $createdBy)
     {
-        $this->changedBy = $changedBy;
+        $this->createdBy = $createdBy;
     }
 
     /**
-     * Retrieves changedBy
+     * Retrieves createdBy
      *
      * @return UserInterface
      */
-    public function getChangedBy()
+    public function getCreatedBy()
     {
-        return $this->changedBy;
+        return $this->createdBy;
     }
 }

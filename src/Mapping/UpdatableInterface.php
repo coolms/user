@@ -8,9 +8,7 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable;
-
-use CmsUser\Mapping\UserInterface;
+namespace CmsUser\Mapping;
 
 /**
  * @author Dmitry Popov <d.popov@altgraphic.com>

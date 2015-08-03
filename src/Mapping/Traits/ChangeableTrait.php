@@ -8,23 +8,37 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable;
+namespace CmsUser\Mapping\Traits;
 
 use CmsUser\Mapping\UserInterface;
 
-interface ChangeableInterface
+trait ChangeableTrait
 {
+    /**
+     * @var UserInterface
+     *
+     * @ORM\Blameable(on="change",field={})
+     * @Form\Exclude()
+     */
+    protected $changedBy;
+
     /**
      * Sets changedBy
      *
      * @param UserInterface $changedBy
      */
-    public function setChangedBy(UserInterface $changedBy);
+    public function setChangedBy(UserInterface $changedBy)
+    {
+        $this->changedBy = $changedBy;
+    }
 
     /**
-     * Returns changedBy
+     * Retrieves changedBy
      *
      * @return UserInterface
      */
-    public function getChangedBy();
+    public function getChangedBy()
+    {
+        return $this->changedBy;
+    }
 }

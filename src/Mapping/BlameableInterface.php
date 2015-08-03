@@ -8,26 +8,15 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable;
-
-use CmsUser\Mapping\UserInterface;
+namespace CmsUser\Mapping;
 
 /**
  * @author Dmitry Popov <d.popov@altgraphic.com>
  */
-interface CreatableInterface
+interface BlameableInterface extends
+    CreatableInterface,
+    UpdatableInterface,
+    ChangeableInterface
 {
-    /**
-     * Sets createdBy
-     *
-     * @param UserInterface $createdBy
-     */
-    public function setCreatedBy(UserInterface $createdBy);
-
-    /**
-     * Returns createdBy
-     *
-     * @return UserInterface
-     */
-    public function getCreatedBy();
+    
 }

@@ -8,11 +8,21 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Mapping\Blameable\Traits;
+namespace CmsUser\Mapping;
 
-trait BlameableTrait
+interface ChangeableInterface
 {
-    use CreatableTrait,
-        UpdatableTrait,
-        ChangeableTrait;
+    /**
+     * Sets changedBy
+     *
+     * @param UserInterface $changedBy
+     */
+    public function setChangedBy(UserInterface $changedBy);
+
+    /**
+     * Returns changedBy
+     *
+     * @return UserInterface
+     */
+    public function getChangedBy();
 }
