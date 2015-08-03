@@ -23,6 +23,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         $moduleManager->loadModule('CmsCommon');
         $moduleManager->loadModule('CmsAuthentication');
+        $moduleManager->loadModule('CmsMailer');
     }
 
     /**

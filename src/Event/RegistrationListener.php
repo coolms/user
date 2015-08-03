@@ -12,7 +12,7 @@ namespace CmsUser\Event;
 
 use Zend\EventManager\AbstractListenerAggregate,
     Zend\EventManager\EventManagerInterface,
-    Zend\Http\Request,
+    Zend\Http\Request as HttpRequest,
     Zend\Mvc\MvcEvent;
 
 /**
@@ -45,25 +45,20 @@ class RegistrationListener extends AbstractListenerAggregate
         $app = $e->getApplication();
         $services = $app->getServiceManager();
 
-        if (!$services->has('CmsDoctrine\\ObjectManager')) {
-            return;
-        }
-
         $eventManager       = $app->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
 
         $sharedEventManager->attach('CmsUser\Service\UserService', 'register', function($e) use ($services)
         {
             $user = $e->getParam('user');
-            if ($user instanceof \CmsAuthorization\Mapping\RoleableInterface
-                && $services->has('CmsAuthorization\\Options\\ModuleOptions')
+            if ($user instanceof \CmsAuthorization\Mapping\RoleableInterface &&
+                $services->has('CmsAuthorization\\Options\\ModuleOptions')
             ) {
                 /* @var $config \CmsAuthorization\Options\ModuleOptions */
                 $config = $services->get('CmsAuthorization\\Options\\ModuleOptions');
                 $roleClass = $config->getRoleClass();
-                /* @var $objectManager \Doctrine\Common\Persistence\ObjectManager */
-                $objectManager = $services->get('CmsDoctrine\\ObjectManager');
-                if ($defaultRole = $objectManager->find($roleClass, $config->getAuthenticatedRole())) {
+                $mapper = $services->get('MapperManager')->get($roleClass);
+                if ($defaultRole = $mapper->find($config->getAuthenticatedRole())) {
                     $user->addRole($defaultRole);
                 }
             }
