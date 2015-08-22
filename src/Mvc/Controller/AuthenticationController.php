@@ -13,18 +13,24 @@ namespace CmsUser\Mvc\Controller;
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\Stdlib\ResponseInterface,
     Zend\View\Model\ViewModel,
+    CmsCommon\Stdlib\OptionsProviderTrait,
     CmsUser\Options\ControllerOptionsInterface,
     CmsUser\Service\UserServiceAwareTrait,
     CmsUser\Service\UserServiceInterface;
 
+/**
+ * AuthenticationController
+ *
+ * @author Dmitry Popov <d.popov@altgraphic.com>
+ *
+ * @method IndexController setOptions(\CmsUser\Options\ControllerOptionsInterface $options)
+ * @method \CmsUser\Options\ControllerOptionsInterface getOptions()
+ * @method \CmsAuthentication\Mvc\Controller\Plugin\Authentication cmsAuthentication()
+ */
 class AuthenticationController extends AbstractActionController
 {
-    use UserServiceAwareTrait;
-
-    /**
-     * @var ControllerOptionsInterface
-     */
-    protected $options;
+    use UserServiceAwareTrait,
+        OptionsProviderTrait;
 
     /**
      * __construct
@@ -38,7 +44,7 @@ class AuthenticationController extends AbstractActionController
         ControllerOptionsInterface $options
     ) {
         $this->setUserService($userService);
-        $this->options = $options;
+        $this->setOptions($options);
     }
 
     /**
@@ -53,7 +59,7 @@ class AuthenticationController extends AbstractActionController
         // if the user is logged in, we can't reset password
         if ($this->cmsAuthentication()->hasIdentity()) {
             // redirect to the defualt user route
-            return $this->redirect()->toRoute($this->options->getDefaultUserRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getDefaultUserRoute());
         }
 
         if ($token = $this->params()->fromRoute('token')) {
@@ -63,7 +69,6 @@ class AuthenticationController extends AbstractActionController
             } elseif ($identity) {
                 $viewModel = new ViewModel(compact('identity'));
                 $viewModel->setTemplate('cms-user/authentication/reset-password-success');
-
             	return $viewModel;
             }
 
@@ -90,7 +95,6 @@ class AuthenticationController extends AbstractActionController
             } elseif ($identity) { // Password reset successfully
                 $viewModel = new ViewModel(compact('identity'));
                 $viewModel->setTemplate('cms-user/authentication/reset-password-warning');
-
                 return $viewModel;
             }
         }

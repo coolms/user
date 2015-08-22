@@ -73,6 +73,11 @@ class ModuleOptions extends AbstractOptions implements
     /**
      * @var string
      */
+    protected $loginRoute = 'cms-user/login';
+
+    /**
+     * @var string
+     */
     protected $authenticationController = 'CmsAuthentication\\Controller\\Authentication';
 
     /**
@@ -297,6 +302,23 @@ class ModuleOptions extends AbstractOptions implements
     public function getLoginAfterRegistration()
     {
         return $this->loginAfterRegistration;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLoginRoute($route)
+    {
+        $this->loginRoute = $route;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLoginRoute()
+    {
+        return $this->loginRoute;
     }
 
     /**

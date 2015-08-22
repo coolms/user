@@ -15,21 +15,22 @@ use Zend\Form\ElementInterface,
     Zend\Stdlib\Parameters,
     Zend\Stdlib\ResponseInterface,
     Zend\View\Model\ViewModel,
+    CmsCommon\Stdlib\OptionsProviderTrait,
     CmsUser\Options\ControllerOptionsInterface,
     CmsUser\Service\UserServiceAwareTrait,
     CmsUser\Service\UserServiceInterface;
 
 /**
  * Registration controller
+ *
+ * @method IndexController setOptions(\CmsUser\Options\ControllerOptionsInterface $options)
+ * @method \CmsUser\Options\ControllerOptionsInterface getOptions()
+ * @method \CmsAuthentication\Mvc\Controller\Plugin\Authentication cmsAuthentication()
  */
 class RegistrationController extends AbstractActionController
 {
-    use UserServiceAwareTrait;
-
-    /**
-     * @var ControllerOptionsInterface
-     */
-    protected $options;
+    use UserServiceAwareTrait,
+        OptionsProviderTrait;
 
     /**
      * @var string
@@ -61,7 +62,7 @@ class RegistrationController extends AbstractActionController
         ElementInterface $credentialElement = null
     ) {
         $this->setUserService($userService);
-        $this->options = $options;
+        $this->setOptions($options);
         $this->identityElement = $identityElement;
         $this->credentialElement = $credentialElement;
     }
@@ -80,7 +81,7 @@ class RegistrationController extends AbstractActionController
         // if the user is logged in, we don't need to register
         if ($authPlugin->hasIdentity()) {
             // redirect to the default user route
-            $route = $this->options->getDefaultUserRoute();
+            $route = $this->getOptions()->getDefaultUserRoute();
             if (is_callable($route)) {
                 $route = $route($authPlugin->getIdentity());
             }
@@ -89,11 +90,11 @@ class RegistrationController extends AbstractActionController
         }
 
         // if registration is disabled
-        if (!($enableRegistration = $this->options->getEnableRegistration())) {
+        if (!($enableRegistration = $this->getOptions()->getEnableRegistration())) {
             return new ViewModel(compact('enableRegistration'));
         }
 
-        if ($this->options->getUseRegistrationRedirectParameter()) {
+        if ($this->getOptions()->getUseRegistrationRedirectParameter()) {
             $redirect = $this->params()->fromQuery('redirect', false);
         } else {
             $redirect = false;
@@ -131,11 +132,11 @@ class RegistrationController extends AbstractActionController
             } elseif ($identity) { // We are registered
 
                 if ($this->identityElement && $this->credentialElement
-                    && $this->options->getLoginAfterRegistration()
+                    && $this->getOptions()->getLoginAfterRegistration()
                 ) {
                     // Create authentication data
-                    $identityFields = $this->options->getIdentityFields();
-                    if ($this->options->getEnableUsername()) {
+                    $identityFields = $this->getOptions()->getIdentityFields();
+                    if ($this->getOptions()->getEnableUsername()) {
                         $post[$this->identityElement->getName()] = $identity->getEmail();
                     } elseif (in_array('username', $identityFields)) {
                         $post[$this->identityElement->getName()] = $identity->getUsername();
@@ -153,7 +154,7 @@ class RegistrationController extends AbstractActionController
 
                     $this->getRequest()->setPost(new Parameters($post));
                     return $this->forward()->dispatch(
-                        $this->options->getAuthenticationController(),
+                        $this->getOptions()->getAuthenticationController(),
                         ['action' => 'authenticate']
                     );
                 }
@@ -163,7 +164,7 @@ class RegistrationController extends AbstractActionController
                 }
 
                 // redirect to the default user route
-                $route = $this->options->getDefaultUserRoute();
+                $route = $this->getOptions()->getDefaultUserRoute();
                 if (is_callable($route)) {
                     $route = $route($authPlugin->getIdentity());
                 }

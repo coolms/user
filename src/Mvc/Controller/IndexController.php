@@ -13,18 +13,24 @@ namespace CmsUser\Mvc\Controller;
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\Stdlib\ResponseInterface,
     Zend\View\Model\ViewModel,
+    CmsCommon\Stdlib\OptionsProviderTrait,
     CmsUser\Options\ControllerOptionsInterface,
     CmsUser\Service\UserServiceAwareTrait,
     CmsUser\Service\UserServiceInterface;
 
+/**
+ * IndexController
+ *
+ * @author Dmitry Popov <d.popov@altgraphic.com>
+ *
+ * @method IndexController setOptions(\CmsUser\Options\ControllerOptionsInterface $options)
+ * @method \CmsUser\Options\ControllerOptionsInterface getOptions()
+ * @method \CmsAuthentication\Mvc\Controller\Plugin\Authentication cmsAuthentication()
+ */
 class IndexController extends AbstractActionController
 {
-    use UserServiceAwareTrait;
-
-    /**
-     * @var ControllerOptionsInterface
-     */
-    protected $options;
+    use UserServiceAwareTrait,
+        OptionsProviderTrait;
 
     /**
      * __construct
@@ -37,7 +43,7 @@ class IndexController extends AbstractActionController
         ControllerOptionsInterface $options
     ){
         $this->setUserService($userService);
-        $this->options = $options;
+        $this->setOptions($options);
     }
 
     /**
@@ -64,7 +70,7 @@ class IndexController extends AbstractActionController
         // if the user is not logged in, we can't edit profile
         if (!$this->cmsAuthentication()->hasIdentity()) {
             // redirect to the login redirect route
-            return $this->redirect()->toRoute($this->options->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRoute());
         }
 
         $url = $this->url()->fromRoute(null, ['action' => 'edit-profile']);
@@ -110,7 +116,7 @@ class IndexController extends AbstractActionController
         // if the user is not logged in, we can't change password
         if (!$this->cmsAuthentication()->hasIdentity()) {
             // redirect to the login redirect route
-            return $this->redirect()->toRoute($this->options->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRoute());
         }
 
         $url = $this->url()->fromRoute(null, ['action' => 'change-password']);
@@ -136,7 +142,6 @@ class IndexController extends AbstractActionController
             } elseif ($identity) { // Password changed successfully
                 $viewModel = new ViewModel(compact('identity'));
                 $viewModel->setTemplate('cms-user/index/change-password-success');
-
                 return $viewModel;
             }
         }
@@ -156,7 +161,7 @@ class IndexController extends AbstractActionController
         // if the user is not logged in, we can't change email
         if (!$this->cmsAuthentication()->hasIdentity()) {
             // redirect to the login redirect route
-            return $this->redirect()->toRoute($this->options->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRoute());
         }
 
         $url = $this->url()->fromRoute(null, ['action' => 'change-email']);
@@ -181,7 +186,6 @@ class IndexController extends AbstractActionController
             } elseif ($identity) { // Email changed successfully
                 $viewModel = new ViewModel(compact('identity'));
                 $viewModel->setTemplate('cms-user/index/change-email-success');
-
                 return $viewModel;
             }
         }
@@ -204,12 +208,11 @@ class IndexController extends AbstractActionController
             } elseif ($identity) {
                 $viewModel = new ViewModel(compact('identity'));
                 $viewModel->setTemplate('cms-user/index/confirm-email');
-
                 return $viewModel;
             }
         }
 
-        return $this->redirect()->toRoute($this->options->getDefaultUserRoute());
+        return $this->redirect()->toRoute($this->getOptions()->getDefaultUserRoute());
     }
 
     /**
@@ -222,7 +225,7 @@ class IndexController extends AbstractActionController
         // if the user is not logged in, we can't change security question
         if (!$this->cmsAuthentication()->hasIdentity()) {
             // redirect to the login redirect route
-            return $this->redirect()->toRoute($this->options->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRoute());
         }
 
         $url = $this->url()->fromRoute(null, ['action' => 'change-security-question']);

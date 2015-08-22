@@ -12,14 +12,18 @@ namespace CmsUser;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface,
     Zend\ModuleManager\Feature\ConfigProviderInterface,
-    Zend\ModuleManager\ModuleManager;
+    Zend\ModuleManager\Feature\InitProviderInterface,
+    Zend\ModuleManager\ModuleManagerInterface;
 
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface
+class Module implements
+    AutoloaderProviderInterface,
+    ConfigProviderInterface,
+    InitProviderInterface
 {
     /**
-     * @param ModuleManager $moduleManager
+     * @param ModuleManagerInterface $moduleManager
      */
-    public function init(ModuleManager $moduleManager)
+    public function init(ModuleManagerInterface $moduleManager)
     {
         $moduleManager->loadModule('CmsCommon');
         $moduleManager->loadModule('CmsAuthentication');

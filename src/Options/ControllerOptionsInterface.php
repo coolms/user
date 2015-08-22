@@ -95,6 +95,17 @@ interface ControllerOptionsInterface
     public function getLoginAfterRegistration();
 
     /**
+     * @param string $route
+     * @return self
+     */
+    public function setLoginRoute($route);
+
+    /**
+     * @return string
+     */
+    public function getLoginRoute();
+
+    /**
      * Set authentication controller class name
      *
      * @param string $controller
