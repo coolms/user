@@ -126,7 +126,7 @@ return [
         ],
     ],
     'navigation' => [
-        'cms-admin' => [
+        'cmsadminmodules' => [
             [
                 'label' => 'Users',
                 'title' => 'Users',
@@ -146,7 +146,7 @@ return [
                 ],
             ],
         ],
-        'cms-admin-identity' => [
+        'cmsadminidentity' => [
             [
                 'label' => 'Edit Profile',
                 'text_domain' => __NAMESPACE__,
@@ -164,7 +164,7 @@ return [
                 ],
             ],
         ],
-        'cmsusernav' => [
+        'cmsuser' => [
             [
                 'label' => 'Edit Profile',
                 'text_domain' => __NAMESPACE__,
@@ -254,7 +254,7 @@ return [
                 ],
             ],
         ],
-        'cmsusernavbar' => [
+        'cmsuseridentity' => [
             [
                 'label' => 'Sign Up',
                 'title' => 'Sign Up',
