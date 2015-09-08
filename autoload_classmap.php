@@ -23,7 +23,6 @@ return array(
     'CmsUser\Factory\Mvc\Controller\AuthenticationControllerFactory' => __DIR__ . '/src/Factory/Mvc/Controller/AuthenticationControllerFactory.php',
     'CmsUser\Factory\Mvc\Controller\IndexControllerFactory'          => __DIR__ . '/src/Factory/Mvc/Controller/IndexControllerFactory.php',
     'CmsUser\Factory\Mvc\Controller\RegistrationControllerFactory'   => __DIR__ . '/src/Factory/Mvc/Controller/RegistrationControllerFactory.php',
-    'CmsUser\Factory\NavigationFactory'                              => __DIR__ . '/src/Factory/NavigationFactory.php',
     'CmsUser\Factory\Persistence\UserMapperDelegatorFactory'         => __DIR__ . '/src/Factory/Persistence/UserMapperDelegatorFactory.php',
     'CmsUser\Factory\UserServiceFactory'                             => __DIR__ . '/src/Factory/UserServiceFactory.php',
     'CmsUser\Factory\Validator\AnswerVerifyValidatorFactory'         => __DIR__ . '/src/Factory/Validator/AnswerVerifyValidatorFactory.php',

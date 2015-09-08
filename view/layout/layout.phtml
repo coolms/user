@@ -1,8 +1,8 @@
 <?php
 /**
- * CoolMS2 User module (http://www.coolms.com/)
+ * CoolMS2 User Module (http://www.coolms.com/)
  *
- * @link      http://github.com/coolms/CmsUser for the canonical source repository
+ * @link      http://github.com/coolms/user for the canonical source repository
  * @copyright Copyright (c) 2006-2015 Altgraphic, ALC (http://www.altgraphic.com)
  * @license   http://www.coolms.com/license/new-bsd New BSD License
  * @author    Dmitry Popov <d.popov@altgraphic.com>
@@ -10,35 +10,19 @@
 
 namespace CmsUser;
 
-// use JQuery and Twitter Boostrap 3
-$this->partial('twbs');
-$this->partial('jquery');
-
 ?>
-<?= $this->doctype(); ?>
+<?= $this->render('layout/header'); ?>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <?= $this->headTitle('CmsUser')->setSeparator(' | ')->setAutoEscape(false); ?>
+<div class="container" id="content">
+  <div class="row">
+    <div class="col-sm-3 col-sm-push-9">
+      <?= $this->render('layout/cmsuser-nav-menu'); ?>
+    </div>
+    <div class="col-sm-9 col-sm-pull-3">
+      <?= $this->cmsMessages(null, ['class' => 'col-sm-12']); ?>
+      <?= $this->content; ?>
+    </div>
+  </div>
+</div> <!-- /container -->
 
-    <!-- Meta -->
-    <?= $this->headMeta(); ?>
-
-    <!-- Styles -->
-    <?= $this->headLink(); ?>
-
-    <!-- Scripts -->
-    <?= $this->headScript(); ?>
-  </head>
-  <body>
-    <?= $this->partial('layout/cmsuser-header'); ?>
-
-    <?= $this->partial('layout/cmsuser-region-leading'); ?>
-    <?= $this->partial('layout/cmsuser-region-center'); ?>
-    <?= $this->partial('layout/cmsuser-region-trailing'); ?>
-
-    <?= $this->partial('layout/cmsuser-footer'); ?>
-<?= $this->inlineScript(); ?>
-  </body>
-</html>
+<?= $this->render('layout/footer');

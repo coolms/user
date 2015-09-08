@@ -164,7 +164,97 @@ return [
                 ],
             ],
         ],
-        'cms-user' => [
+        'cmsusernav' => [
+            [
+                'label' => 'Edit Profile',
+                'text_domain' => __NAMESPACE__,
+                'route' => 'cms-user/default',
+                'params' => ['action' => 'edit-profile'],
+                'resource' => 'route/cms-user/default',
+                'order' => 750,
+                'twbs' => [
+                    'icon' => [
+                        'type' => 'fa',
+                        'content' => 'pencil',
+                        'placement' => 'prepend',
+                        'tagName' => 'i',
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Change Password',
+                'text_domain' => __NAMESPACE__,
+                'route' => 'cms-user/default',
+                'params' => ['action' => 'change-password'],
+                'resource' => 'route/cms-user/default',
+                'order' => 800,
+                'twbs' => [
+                    'icon' => [
+                        'type' => 'fa',
+                        'content' => 'lock',
+                        'placement' => 'prepend',
+                        'tagName' => 'i',
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Change Email',
+                'text_domain' => __NAMESPACE__,
+                'route' => 'cms-user/default',
+                'params' => ['action' => 'change-email'],
+                'resource' => 'route/cms-user/default',
+                'order' => 850,
+                'twbs' => [
+                    'icon' => [
+                        'type' => 'fa',
+                        'content' => 'envelope',
+                        'placement' => 'prepend',
+                        'tagName' => 'i',
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Change Security Question',
+                'text_domain' => __NAMESPACE__,
+                'route' => 'cms-user/default',
+                'params' => ['action' => 'change-security-question'],
+                'resource' => 'route/cms-user/default',
+                'order' => 900,
+                'twbs' => [
+                    'labelWrapper' => [
+                        'type' => 'htmlContainer',
+                        'tagName' => 'span',
+                    ],
+                    'icon' => [
+                        'type' => 'fa',
+                        'content' => 'question',
+                        'placement' => 'prepend',
+                        'tagName' => 'i',
+                    ],
+                ],
+            ],
+            [
+                'order' => 950,
+                'uri' => '',
+                'class' => 'divider',
+            ],
+            [
+                'label' => 'Sign Out',
+                'text_domain' => 'CmsAuthentication',
+                'route' => 'cms-user/logout',
+                'resource' => 'route/cms-user/logout',
+                'order' => 1000,
+                'twbs' => [
+                    'icon' => [
+                        'type' => 'fa',
+                        'content' => 'sign-out',
+                        'placement' => 'prepend',
+                        'tagName' => 'i',
+                    ],
+                ],
+            ],
+        ],
+        'cmsusernavbar' => [
             [
                 'label' => 'Sign Up',
                 'title' => 'Sign Up',
@@ -321,6 +411,9 @@ return [
     ],
     'router' => include('router.config.php'),
     'service_manager' => [
+        'aliases' => [
+            'CmsUser\Options\ModuleOptionsInterface' => 'CmsUser\Options\ModuleOptions',
+        ],
         'invokables' => [
             'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
             'CmsUser\MailService' => 'CmsMailer\Service\MailService',
@@ -332,10 +425,7 @@ return [
                 => 'CmsUser\Factory\CryptoPasswordServiceFactory',
             'CmsUser\Authentication\Adapter\DefaultAdapter'
                 => 'CmsUser\Factory\Authentication\AdapterFactory',
-            'CmsUser\Navigation'
-                => 'CmsUser\Factory\NavigationFactory',
-            'CmsUser\Options\ModuleOptions'
-                => 'CmsUser\Factory\ModuleOptionsFactory',
+            'CmsUser\Options\ModuleOptions' => 'CmsUser\Factory\ModuleOptionsFactory',
         ],
     ],
     'translator' => [
@@ -377,7 +467,6 @@ return [
     ],
     'view_manager' => [
         'template_map' => [
-            'cms-user/navbar-menu' => __DIR__ . '/../view/cms-user/index/navbar-menu.phtml',
             'cms-user/authentication/reset-password-success'
                 => __DIR__ . '/../view/cms-user/authentication/reset-password-success.phtml',
             'cms-user/authentication/reset-password-warning'
@@ -389,9 +478,6 @@ return [
             'layout/cmsuser-layout' => __DIR__ . '/../view/layout/layout.phtml',
             'layout/cmsuser-nav-menu' => __DIR__ . '/../view/layout/nav-menu.phtml',
             'layout/cmsuser-navbar-menu' => __DIR__ . '/../view/layout/navbar-menu.phtml',
-            'layout/cmsuser-region-center' => __DIR__ . '/../view/layout/region-center.phtml',
-            'layout/cmsuser-region-leading' => __DIR__ . '/../view/layout/region-leading.phtml',
-            'layout/cmsuser-region-trailing' => __DIR__ . '/../view/layout/region-trailing.phtml',
             'mail-message/user-register' => __DIR__ . '/../view/mail-message/register.phtml',
             'mail-message/user-confirm-email' => __DIR__ . '/../view/mail-message/confirm-email.phtml',
             'mail-message/user-reset-password' => __DIR__ . '/../view/mail-message/reset-password.phtml',
