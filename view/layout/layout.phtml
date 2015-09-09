@@ -19,12 +19,12 @@ namespace CmsUser;
       <?= $this->render('layout/cmsuser-nav-menu'); ?>
     </div>
     <div class="col-sm-9 col-sm-pull-3">
-      <?= $this->cmsMessages(null, ['class' => 'col-sm-12']); ?>
+      <?= $this->cmsMessages(null, []); ?>
       <?= $this->content; ?>
     </div>
   <?php else: ?>
     <div class="col-sm-10 col-md-offset-1">
-      <?= $this->cmsMessages(null, ['class' => 'col-sm-12']); ?>
+      <?= $this->cmsMessages(null, []); ?>
       <?= $this->content; ?>
     </div>
   <?php endif; ?>
