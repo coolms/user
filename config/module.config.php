@@ -171,7 +171,7 @@ return [
                 'route' => 'cms-user/default',
                 'params' => ['action' => 'edit-profile'],
                 'resource' => 'route/cms-user/default',
-                'order' => 750,
+                'order' => 900,
                 'twbs' => [
                     'icon' => [
                         'type' => 'fa',
@@ -187,7 +187,7 @@ return [
                 'route' => 'cms-user/default',
                 'params' => ['action' => 'change-password'],
                 'resource' => 'route/cms-user/default',
-                'order' => 800,
+                'order' => 910,
                 'twbs' => [
                     'icon' => [
                         'type' => 'fa',
@@ -203,7 +203,7 @@ return [
                 'route' => 'cms-user/default',
                 'params' => ['action' => 'change-email'],
                 'resource' => 'route/cms-user/default',
-                'order' => 850,
+                'order' => 920,
                 'twbs' => [
                     'icon' => [
                         'type' => 'fa',
@@ -219,7 +219,7 @@ return [
                 'route' => 'cms-user/default',
                 'params' => ['action' => 'change-security-question'],
                 'resource' => 'route/cms-user/default',
-                'order' => 900,
+                'order' => 930,
                 'twbs' => [
                     'labelWrapper' => [
                         'type' => 'htmlContainer',
@@ -234,7 +234,7 @@ return [
                 ],
             ],
             [
-                'order' => 950,
+                'order' => 940,
                 'uri' => '',
                 'class' => 'divider',
             ],
