@@ -54,9 +54,9 @@ class RegistrationListener extends AbstractListenerAggregate
             if ($user instanceof \CmsAuthorization\Mapping\RoleableInterface &&
                 $services->has('CmsAuthorization\\Options\\ModuleOptions')
             ) {
-                /* @var $config \CmsAuthorization\Options\ModuleOptions */
-                $config = $services->get('CmsAuthorization\\Options\\ModuleOptions');
-                $roleClass = $config->getRoleClass();
+                /* @var $config \CmsPermissions\Options\ModuleOptions */
+                $config = $services->get('CmsPermissions\\Options\\ModuleOptions');
+                $roleClass = $config->getRoleEntityClass();
                 $mapper = $services->get('MapperManager')->get($roleClass);
                 if ($defaultRole = $mapper->find($config->getAuthenticatedRole())) {
                     $user->addRole($defaultRole);

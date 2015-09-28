@@ -34,7 +34,11 @@ class ChangeEmailFormFactory implements FactoryInterface
             'question',
             'answerVerify',
             'email',
+        ])->setValidationGroup([
+            'answerVerify',
+            'email',
         ]);
+
         $form->get('email')->setLabel('New Email');
 
         return $form;

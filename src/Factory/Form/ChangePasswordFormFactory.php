@@ -34,6 +34,10 @@ class ChangePasswordFormFactory implements FactoryInterface
             'passwordVerify',
             'question',
             'answerVerify',
+        ])->setValidationGroup([
+            'password',
+            'passwordVerify',
+            'answerVerify',
         ]);
 
         return $form;
