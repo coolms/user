@@ -114,7 +114,7 @@ return [
         ],
     ],
     'listeners' => [
-        'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
+        'CmsUser\Listener\RegistrationListener' => 'CmsUser\Listener\RegistrationListener',
     ],
     'mappers' => [
         'aliases' => [
@@ -415,7 +415,7 @@ return [
             'CmsUser\Options\ModuleOptionsInterface' => 'CmsUser\Options\ModuleOptions',
         ],
         'invokables' => [
-            'CmsUser\Event\RegistrationListener' => 'CmsUser\Event\RegistrationListener',
+            'CmsUser\Listener\RegistrationListener' => 'CmsUser\Listener\RegistrationListener',
             'CmsUser\MailService' => 'CmsMailer\Service\MailService',
         ],
         'factories' => [

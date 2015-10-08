@@ -12,7 +12,9 @@ namespace CmsUser\Factory\Authentication;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Authentication\Storage\DefaultStorage;
+    CmsUser\Authentication\Storage\DefaultStorage,
+    CmsUser\Options\AuthenticationOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class StorageFactory implements FactoryInterface
 {
@@ -21,8 +23,8 @@ class StorageFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /* @var $options \CmsUser\Options\AuthenticationOptionsInterface */
-        $options = $serviceLocator->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options AuthenticationOptionsInterface */
+        $options = $serviceLocator->get(ModuleOptions::class);
 
         return new DefaultStorage($serviceLocator->get('MapperManager')->get($options->getUserEntityClass()));
     }

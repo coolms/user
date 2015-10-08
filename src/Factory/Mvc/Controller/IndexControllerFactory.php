@@ -12,7 +12,9 @@ namespace CmsUser\Factory\Mvc\Controller;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Mvc\Controller\IndexController;
+    CmsUser\Mvc\Controller\IndexController,
+    CmsUser\Options\ControllerOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class IndexControllerFactory implements FactoryInterface
 {
@@ -22,8 +24,8 @@ class IndexControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        /* @var $options \CmsUser\Options\ControllerOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ControllerOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         return new IndexController(
             $services->get('DomainServiceManager')->get($options->getUserEntityClass()),

@@ -53,9 +53,10 @@ class Username extends AbstractHelper
                 return 'guest';
             }
             if (!$user instanceof UserInterface) {
-                throw new DomainException(
-                    '$user is not an instance of CmsUser\Mapping\UserInterface', 500
-                );
+                throw new DomainException(sprintf(
+                    '$user is not an instance of %s',
+                    UserInterface::class
+                ), 500);
             }
         }
 

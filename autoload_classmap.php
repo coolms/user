@@ -3,7 +3,6 @@
 return array(
     'CmsUser\Authentication\Adapter\DefaultAdapter'                  => __DIR__ . '/src/Authentication/Adapter/DefaultAdapter.php',
     'CmsUser\Authentication\Storage\DefaultStorage'                  => __DIR__ . '/src/Authentication/Storage/DefaultStorage.php',
-    'CmsUser\Event\RegistrationListener'                             => __DIR__ . '/src/Event/RegistrationListener.php',
     'CmsUser\Exception\DomainException'                              => __DIR__ . '/src/Exception/DomainException.php',
     'CmsUser\Exception\ExceptionInterface'                           => __DIR__ . '/src/Exception/ExceptionInterface.php',
     'CmsUser\Exception\InvalidArgumentException'                     => __DIR__ . '/src/Exception/InvalidArgumentException.php',
@@ -43,6 +42,7 @@ return array(
     'CmsUser\Form\Element\Username'                                  => __DIR__ . '/src/Form/Element/Username.php',
     'CmsUser\Form\ResetPassword'                                     => __DIR__ . '/src/Form/ResetPassword.php',
     'CmsUser\Initializer\UserServiceInitializer'                     => __DIR__ . '/src/Initializer/UserServiceInitializer.php',
+    'CmsUser\Listener\RegistrationListener'                          => __DIR__ . '/src/Listener/RegistrationListener.php',
     'CmsUser\Mapping\BlameableInterface'                             => __DIR__ . '/src/Mapping/BlameableInterface.php',
     'CmsUser\Mapping\ChangeableInterface'                            => __DIR__ . '/src/Mapping/ChangeableInterface.php',
     'CmsUser\Mapping\CreatableInterface'                             => __DIR__ . '/src/Mapping/CreatableInterface.php',

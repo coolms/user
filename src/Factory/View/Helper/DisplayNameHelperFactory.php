@@ -12,6 +12,8 @@ namespace CmsUser\Factory\View\Helper;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\ViewHelperServiceOptionsInterface,
+    CmsUser\Options\ModuleOptions,
     CmsUser\View\Helper\DisplayName;
 
 class DisplayNameHelperFactory implements FactoryInterface
@@ -23,8 +25,8 @@ class DisplayNameHelperFactory implements FactoryInterface
     {
         $parentLocator = $helpers->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\ViewHelperModuleOptionsInterface */
-        $options = $parentLocator->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ViewHelperServiceOptionsInterface */
+        $options = $parentLocator->get(ModuleOptions::class);
 
         return new DisplayName($options);
     }

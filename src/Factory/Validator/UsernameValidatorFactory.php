@@ -14,7 +14,9 @@ use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Regex,
     Zend\Validator\StringLength,
-    Zend\Validator\ValidatorChain;
+    Zend\Validator\ValidatorChain,
+    CmsUser\Options\InputFilterOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class UsernameValidatorFactory implements FactoryInterface
 {
@@ -24,8 +26,8 @@ class UsernameValidatorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $validators)
     {
         $services = $validators->getServiceLocator();
-        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options InputFilterOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         $validator = new ValidatorChain();
         $validator->setPluginManager($validators);

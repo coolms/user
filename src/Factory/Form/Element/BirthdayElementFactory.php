@@ -12,7 +12,9 @@ namespace CmsUser\Factory\Form\Element;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Form\Element\Birthday;
+    CmsUser\Form\Element\Birthday,
+    CmsUser\Options\ModuleOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class BirthdayElementFactory implements FactoryInterface
 {
@@ -32,8 +34,8 @@ class BirthdayElementFactory implements FactoryInterface
      */
     protected function configureElement(Birthday $element, ServiceLocatorInterface $services)
     {
-        /* @var $options \CmsUser\Options\ModuleOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ModuleOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         $year = (new \DateTime('now'))->format('Y');
         $element->setOptions([

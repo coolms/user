@@ -13,7 +13,10 @@ namespace CmsUser\Factory\Mvc\Controller;
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     CmsCommon\Form\CommonOptionsInterface as FormCommonOptionsInterface,
-    CmsUser\Mvc\Controller\AuthenticationController;
+    CmsUser\Form\ResetPassword,
+    CmsUser\Mvc\Controller\AuthenticationController,
+    CmsUser\Options\ControllerOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class AuthenticationControllerFactory implements FactoryInterface
 {
@@ -23,8 +26,8 @@ class AuthenticationControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        /* @var $options \CmsUser\Options\ControllerOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ControllerOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         if ($options instanceof FormCommonOptionsInterface) {
             $formOptions = $options->toArray();
@@ -39,7 +42,7 @@ class AuthenticationControllerFactory implements FactoryInterface
         return new AuthenticationController(
             $services->get('DomainServiceManager')->get($options->getUserEntityClass()),
             $options,
-            $services->get('FormElementManager')->get('CmsUser\\Form\\ResetPassword', $formOptions)
+            $services->get('FormElementManager')->get(ResetPassword::class, $formOptions)
         );
     }
 }

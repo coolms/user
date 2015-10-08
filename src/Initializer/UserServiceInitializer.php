@@ -13,6 +13,8 @@ namespace CmsUser\Initializer;
 use Zend\ServiceManager\AbstractPluginManager,
     Zend\ServiceManager\InitializerInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\UserServiceOptionsInterface,
+    CmsUser\Options\ModuleOptions,
     CmsUser\Service\UserServiceAwareInterface;
 
 class UserServiceInitializer implements InitializerInterface
@@ -27,8 +29,8 @@ class UserServiceInitializer implements InitializerInterface
                 $services = $services->getServiceLocator();
             }
 
-            /* @var $options \CmsUser\Options\UserServiceOptionsInterface */
-            $options = $services->get('CmsUser\\Options\\ModuleOptions');
+            /* @var $options UserServiceOptionsInterface */
+            $options = $services->get(ModuleOptions::class);
             $instance->setUserService($services->get('DomainServiceManager')->get($options->getUserEntityClass()));
         }
     }

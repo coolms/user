@@ -11,7 +11,9 @@
 namespace CmsUser\Factory\Form;
 
 use Zend\ServiceManager\FactoryInterface,
-    Zend\ServiceManager\ServiceLocatorInterface;
+    Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\FormOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class ChangeEmailFormFactory implements FactoryInterface
 {
@@ -21,8 +23,8 @@ class ChangeEmailFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $elements)
     {
         $services = $elements->getServiceLocator();
-        /* @var $options \CmsUser\Options\FormOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options FormOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         $creationOptions = $options->toArray();
         $creationOptions['label'] = 'Changing Email Address';

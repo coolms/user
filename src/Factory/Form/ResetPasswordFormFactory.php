@@ -12,7 +12,8 @@ namespace CmsUser\Factory\Form;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Form\ResetPassword;
+    CmsUser\Form\ResetPassword,
+    CmsUser\Options\ModuleOptions;
 
 class ResetPasswordFormFactory implements FactoryInterface
 {
@@ -22,8 +23,8 @@ class ResetPasswordFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $elements)
     {
         $services = $elements->getServiceLocator();
-        /* @var $options \CmsUser\Options\ModuleOptions */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ModuleOptions */
+        $options = $services->get(ModuleOptions::class);
 
         $creationOptions = $options->toArray();
 

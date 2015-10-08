@@ -12,7 +12,9 @@ namespace CmsUser\Factory\Mvc\Controller;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsUser\Mvc\Controller\RegistrationController;
+    CmsUser\Mvc\Controller\RegistrationController,
+    CmsUser\Options\ControllerOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class RegistrationControllerFactory implements FactoryInterface
 {
@@ -22,8 +24,8 @@ class RegistrationControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        /* @var $options \CmsUser\Options\ControllerOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ControllerOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
         /* @var $formElementManager \Zend\Form\FormElementManager */
         $formElementManager = $services->get('FormElementManager');
 

@@ -12,7 +12,9 @@ namespace CmsUser\Factory\Form\Element;
 
 use Zend\ServiceManager\DelegatorFactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    CmsAuthentication\Form\Element\Identity;
+    CmsAuthentication\Form\Element\Identity,
+    CmsUser\Options\AuthenticationOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class IdentityElementDelegatorFactory implements DelegatorFactoryInterface
 {
@@ -33,8 +35,8 @@ class IdentityElementDelegatorFactory implements DelegatorFactoryInterface
 
         $services = $elements->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\AuthenticationOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options AuthenticationOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         if ($fields = $options->getIdentityFields()) {
             $last = ucfirst(array_pop($fields));

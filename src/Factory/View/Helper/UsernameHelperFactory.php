@@ -12,6 +12,8 @@ namespace CmsUser\Factory\View\Helper;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\ViewHelperServiceOptionsInterface,
+    CmsUser\Options\ModuleOptions,
     CmsUser\View\Helper\Username;
 
 class UsernameHelperFactory implements FactoryInterface
@@ -23,8 +25,8 @@ class UsernameHelperFactory implements FactoryInterface
     {
         $services = $helpers->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\ViewHelperModuleOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ViewHelperServiceOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         return new Username($options);
     }

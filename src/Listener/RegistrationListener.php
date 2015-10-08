@@ -8,12 +8,16 @@
  * @author    Dmitry Popov <d.popov@altgraphic.com>
  */
 
-namespace CmsUser\Event;
+namespace CmsUser\Listener;
 
 use Zend\EventManager\AbstractListenerAggregate,
     Zend\EventManager\EventManagerInterface,
     Zend\Http\Request as HttpRequest,
-    Zend\Mvc\MvcEvent;
+    Zend\Mvc\MvcEvent,
+    CmsAuthorization\Mapping\RoleableInterface,
+    CmsAuthorization\Options\ModuleOptions as AuthorizationModuleOptions,
+    CmsPermissions\Options\ModuleOptions as PermissionsModuleOptions,
+    CmsUser\Service\UserService;
 
 /**
  * User register event listener
@@ -48,14 +52,14 @@ class RegistrationListener extends AbstractListenerAggregate
         $eventManager       = $app->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
 
-        $sharedEventManager->attach('CmsUser\Service\UserService', 'register', function($e) use ($services)
+        $sharedEventManager->attach(UserService::class, 'register', function($e) use ($services)
         {
             $user = $e->getParam('user');
-            if ($user instanceof \CmsAuthorization\Mapping\RoleableInterface &&
-                $services->has('CmsAuthorization\\Options\\ModuleOptions')
+            if ($user instanceof RoleableInterface &&
+                $services->has(AuthorizationModuleOptions::class)
             ) {
-                /* @var $config \CmsPermissions\Options\ModuleOptions */
-                $config = $services->get('CmsPermissions\\Options\\ModuleOptions');
+                /* @var $config PermissionsModuleOptions */
+                $config = $services->get(PermissionsModuleOptions::class);
                 $roleClass = $config->getRoleEntityClass();
                 $mapper = $services->get('MapperManager')->get($roleClass);
                 if ($defaultRole = $mapper->find($config->getAuthenticatedRole())) {

@@ -12,7 +12,9 @@ namespace CmsUser\Factory;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    Zend\Crypt\Password\Bcrypt;
+    Zend\Crypt\Password\Bcrypt,
+    CmsUser\Options\PasswordOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class CryptoPasswordServiceFactory implements FactoryInterface
 {
@@ -21,8 +23,8 @@ class CryptoPasswordServiceFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /* @var $options \CmsUser\Options\PasswordOptionsInterface */
-        $options = $serviceLocator->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options PasswordOptionsInterface */
+        $options = $serviceLocator->get(ModuleOptions::class);
         return new Bcrypt(['cost' => $options->getPasswordCost()]);
     }
 }

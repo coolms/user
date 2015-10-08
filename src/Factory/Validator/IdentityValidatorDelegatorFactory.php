@@ -14,7 +14,9 @@ use Zend\I18n\Validator\Alnum,
     Zend\ServiceManager\DelegatorFactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
-    Zend\Validator\ValidatorChain;
+    Zend\Validator\ValidatorChain,
+    CmsUser\Options\InputFilterOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class IdentityValidatorDelegatorFactory implements DelegatorFactoryInterface
 {
@@ -37,8 +39,8 @@ class IdentityValidatorDelegatorFactory implements DelegatorFactoryInterface
 
         $services = $validators->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options InputFilterOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         $identityFields = $options->getIdentityFields();
         if ($identityFields == ['email']) {

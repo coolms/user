@@ -13,7 +13,8 @@ namespace CmsUser\Factory\Validator;
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
-    Zend\Validator\ValidatorChain;
+    Zend\Validator\ValidatorChain,
+    CmsUser\Options\ModuleOptions;
 
 class AnswerVerifyValidatorFactory implements FactoryInterface
 {
@@ -23,8 +24,8 @@ class AnswerVerifyValidatorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $validators)
     {
         $services = $validators->getServiceLocator();
-        /* @var $options \CmsUser\Options\ModuleOptions */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ModuleOptions */
+        $options = $services->get(ModuleOptions::class);
 
         $identity = null;
         if ($services->has($options->getAuthenticationService())) {

@@ -13,7 +13,9 @@ namespace CmsUser\Factory\Validator;
 use Zend\Filter\StringToLower,
     Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
-    Zend\Validator\Callback;
+    Zend\Validator\Callback,
+    CmsUser\Options\InputFilterOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class NoUsernameExistsValidatorFactory implements FactoryInterface
 {
@@ -23,8 +25,8 @@ class NoUsernameExistsValidatorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $validators)
     {
         $services = $validators->getServiceLocator();
-        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options InputFilterOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
         $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());
 

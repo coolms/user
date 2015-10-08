@@ -12,6 +12,8 @@ namespace CmsUser\Factory;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\UserServiceOptionsInterface,
+    CmsUser\Options\ModuleOptions,
     CmsUser\Service\UserService;
 
 class UserServiceFactory implements FactoryInterface
@@ -23,8 +25,8 @@ class UserServiceFactory implements FactoryInterface
     {
         $services = $domainServices->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\UserServiceOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options UserServiceOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         /* @var $passwordGenerator \CmsCommon\Crypt\PasswordGeneratorInterface */
         $passwordGenerator = $services->get($options->getPasswordGeneratorService());

@@ -12,6 +12,7 @@ namespace CmsUser\Factory\Persistence;
 
 use Zend\ServiceManager\DelegatorFactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsUser\Options\ModuleOptions,
     CmsUser\Persistence\UserMapperInterface;
 
 class UserMapperDelegatorFactory implements DelegatorFactoryInterface
@@ -33,8 +34,8 @@ class UserMapperDelegatorFactory implements DelegatorFactoryInterface
 
         $services = $mappers->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\ModuleOptions */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options ModuleOptions */
+        $options = $services->get(ModuleOptions::class);
 
         $mapper->setIdentityFields($options->getIdentityFields());
 

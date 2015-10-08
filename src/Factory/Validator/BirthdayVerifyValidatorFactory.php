@@ -13,7 +13,9 @@ namespace CmsUser\Factory\Validator;
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
-    Zend\Validator\ValidatorChain;
+    Zend\Validator\ValidatorChain,
+    CmsUser\Options\InputFilterOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class BirthdayVerifyValidatorFactory implements FactoryInterface
 {
@@ -24,8 +26,8 @@ class BirthdayVerifyValidatorFactory implements FactoryInterface
     {
         $services = $validators->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options InputFilterOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
         $userMapper = $services->get('MapperManager')->get($options->getUserEntityClass());

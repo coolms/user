@@ -14,7 +14,9 @@ use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
     Zend\Validator\ValidatorChain,
-    CmsCommon\Mapping\Common\PasswordableInterface;
+    CmsCommon\Mapping\Common\PasswordableInterface,
+    CmsUser\Options\InputFilterOptionsInterface,
+    CmsUser\Options\ModuleOptions;
 
 class PasswordVerifyValidatorFactory implements FactoryInterface
 {
@@ -25,8 +27,8 @@ class PasswordVerifyValidatorFactory implements FactoryInterface
     {
         $services = $validators->getServiceLocator();
 
-        /* @var $options \CmsUser\Options\InputFilterOptionsInterface */
-        $options = $services->get('CmsUser\\Options\\ModuleOptions');
+        /* @var $options InputFilterOptionsInterface */
+        $options = $services->get(ModuleOptions::class);
 
         $userMapper = null;
         $identity   = null;
