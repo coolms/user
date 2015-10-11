@@ -10,7 +10,8 @@
 
 namespace CmsUser\Factory\Form\Element;
 
-use Zend\ServiceManager\DelegatorFactoryInterface,
+use Zend\Form\ElementInterface,
+    Zend\ServiceManager\DelegatorFactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     CmsAuthentication\Form\Element\Identity,
     CmsUser\Options\AuthenticationOptionsInterface,
@@ -20,9 +21,11 @@ class IdentityElementDelegatorFactory implements DelegatorFactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ElementInterface
      */
     public function createDelegatorWithName(
-        ServiceLocatorInterface $elements,
+        ServiceLocatorInterface $serviceLocator,
         $name,
         $requestedName,
         $callback
@@ -33,7 +36,7 @@ class IdentityElementDelegatorFactory implements DelegatorFactoryInterface
             return $identityElement;
         }
 
-        $services = $elements->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
 
         /* @var $options AuthenticationOptionsInterface */
         $options = $services->get(ModuleOptions::class);

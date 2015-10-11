@@ -14,6 +14,7 @@ use Zend\Filter\StringToLower,
     Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
+    Zend\Validator\ValidatorInterface,
     CmsUser\Options\InputFilterOptionsInterface,
     CmsUser\Options\ModuleOptions;
 
@@ -21,10 +22,12 @@ class NoEmailExistsValidatorFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ValidatorInterface
      */
-    public function createService(ServiceLocatorInterface $validators)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $validators->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options InputFilterOptionsInterface */
         $options = $services->get(ModuleOptions::class);
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
@@ -41,7 +44,7 @@ class NoEmailExistsValidatorFactory implements FactoryInterface
             }
         }
 
-        return $validators->get('Callback', [
+        return $serviceLocator->get('Callback', [
             'messages' => [
                 Callback::INVALID_VALUE => 'An user with this email already exists',
             ],

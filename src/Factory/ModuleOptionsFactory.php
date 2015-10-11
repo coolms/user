@@ -18,10 +18,12 @@ class ModuleOptionsFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ModuleOptions
      */
-    public function createService(ServiceLocatorInterface $serviceManager)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceManager->get('Config');
+        $config = $serviceLocator->get('Config');
         return new ModuleOptions(isset($config['cmsuser']) ? $config['cmsuser'] : []);
     }
 }

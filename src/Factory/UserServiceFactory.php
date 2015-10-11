@@ -14,16 +14,19 @@ use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     CmsUser\Options\UserServiceOptionsInterface,
     CmsUser\Options\ModuleOptions,
-    CmsUser\Service\UserService;
+    CmsUser\Service\UserService,
+    CmsUser\Service\UserServiceInterface;
 
 class UserServiceFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return UserServiceInterface
      */
-    public function createService(ServiceLocatorInterface $domainServices)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $domainServices->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
 
         /* @var $options UserServiceOptionsInterface */
         $options = $services->get(ModuleOptions::class);
@@ -36,11 +39,6 @@ class UserServiceFactory implements FactoryInterface
         $mailService->setFromAddress($options->getSenderEmailAddress())
                     ->setFromName($options->getSenderName());
 
-        return new UserService(
-            $options,
-            $domainServices,
-            $passwordGenerator,
-            $mailService
-        );
+        return new UserService($options, $serviceLocator, $passwordGenerator, $mailService);
     }
 }

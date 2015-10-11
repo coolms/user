@@ -17,12 +17,15 @@ use DateTime,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\GreaterThan,
     Zend\Validator\LessThan,
-    Zend\Validator\ValidatorChain;
+    Zend\Validator\ValidatorChain,
+    Zend\Validator\ValidatorInterface;
 
 class BirthdayValidatorFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ValidatorInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

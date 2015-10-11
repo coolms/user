@@ -19,10 +19,12 @@ class ResetPasswordFormFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ResetPassword
      */
-    public function createService(ServiceLocatorInterface $elements)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $elements->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options ModuleOptions */
         $options = $services->get(ModuleOptions::class);
 

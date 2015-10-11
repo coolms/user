@@ -20,10 +20,12 @@ class RegistrationControllerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return RegistrationController
      */
-    public function createService(ServiceLocatorInterface $controllers)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $controllers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options ControllerOptionsInterface */
         $options = $services->get(ModuleOptions::class);
         /* @var $formElementManager \Zend\Form\FormElementManager */

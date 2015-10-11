@@ -20,6 +20,8 @@ class AdapterFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return DefaultAdapter
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

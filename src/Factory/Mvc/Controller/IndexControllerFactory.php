@@ -20,10 +20,12 @@ class IndexControllerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return IndexController
      */
-    public function createService(ServiceLocatorInterface $controllers)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $controllers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options ControllerOptionsInterface */
         $options = $services->get(ModuleOptions::class);
 

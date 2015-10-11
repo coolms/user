@@ -20,10 +20,12 @@ class UsernameHelperFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return Username
      */
-    public function createService(ServiceLocatorInterface $helpers)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $helpers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
 
         /* @var $options ViewHelperServiceOptionsInterface */
         $options = $services->get(ModuleOptions::class);

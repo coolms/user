@@ -20,6 +20,8 @@ class StorageFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return DefaultStorage
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

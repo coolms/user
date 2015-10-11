@@ -20,13 +20,15 @@ class DisplayNameHelperFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return DisplayName
      */
-    public function createService(ServiceLocatorInterface $helpers)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $parentLocator = $helpers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
 
         /* @var $options ViewHelperServiceOptionsInterface */
-        $options = $parentLocator->get(ModuleOptions::class);
+        $options = $services->get(ModuleOptions::class);
 
         return new DisplayName($options);
     }

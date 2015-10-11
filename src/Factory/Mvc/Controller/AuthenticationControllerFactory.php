@@ -22,10 +22,12 @@ class AuthenticationControllerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return AuthenticationController
      */
-    public function createService(ServiceLocatorInterface $controllers)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $controllers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options ControllerOptionsInterface */
         $options = $services->get(ModuleOptions::class);
 

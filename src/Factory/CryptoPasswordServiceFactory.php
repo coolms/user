@@ -20,6 +20,8 @@ class CryptoPasswordServiceFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return Bcrypt
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

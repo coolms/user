@@ -12,6 +12,7 @@ namespace CmsUser\Factory\Form;
 
 use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsCommon\Form\FormInterface,
     CmsUser\Options\FormOptionsInterface,
     CmsUser\Options\ModuleOptions;
 
@@ -19,17 +20,20 @@ class ChangePasswordFormFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return FormInterface
      */
-    public function createService(ServiceLocatorInterface $elements)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $elements->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options FormOptionsInterface */
         $options = $services->get(ModuleOptions::class);
 
         $creationOptions = $options->toArray();
         $creationOptions['label'] = 'Changing Password';
 
-        $form = $elements->get($options->getUserEntityClass(), $creationOptions);
+        /* @var $form FormInterface */
+        $form = $serviceLocator->get($options->getUserEntityClass(), $creationOptions);
         $form->setName('change-password-form');
         $form->setElementGroup([
             'password',

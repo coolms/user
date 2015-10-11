@@ -15,6 +15,7 @@ use Zend\I18n\Validator\Alnum,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
     Zend\Validator\ValidatorChain,
+    Zend\Validator\ValidatorInterface,
     CmsUser\Options\InputFilterOptionsInterface,
     CmsUser\Options\ModuleOptions;
 
@@ -22,6 +23,8 @@ class IdentityValidatorDelegatorFactory implements DelegatorFactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ValidatorInterface
      */
     public function createDelegatorWithName(
         ServiceLocatorInterface $validators,

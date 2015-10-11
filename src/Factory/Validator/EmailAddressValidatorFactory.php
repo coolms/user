@@ -14,6 +14,7 @@ use Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\StringLength,
     Zend\Validator\ValidatorChain,
+    Zend\Validator\ValidatorInterface,
     CmsUser\Options\InputFilterOptionsInterface,
     CmsUser\Options\ModuleOptions;
 
@@ -21,15 +22,17 @@ class EmailAddressValidatorFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ValidatorInterface
      */
-    public function createService(ServiceLocatorInterface $validators)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $validators->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options InputFilterOptionsInterface */
         $options = $services->get(ModuleOptions::class);
 
         $validator = new ValidatorChain();
-        $validator->setPluginManager($validators);
+        $validator->setPluginManager($serviceLocator);
 
         $validator->attachByName('StringLength', [
             'messages' => [

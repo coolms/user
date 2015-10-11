@@ -20,10 +20,12 @@ class BirthdayElementFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return Birthday
      */
-    public function createService(ServiceLocatorInterface $elements)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $elements->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         return $this->configureElement(new Birthday('birthday'), $services);
     }
 

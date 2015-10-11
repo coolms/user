@@ -12,6 +12,7 @@ namespace CmsUser\Factory\Persistence;
 
 use Zend\ServiceManager\DelegatorFactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
+    CmsCommon\Persistence\MapperInterface,
     CmsUser\Options\ModuleOptions,
     CmsUser\Persistence\UserMapperInterface;
 
@@ -19,9 +20,11 @@ class UserMapperDelegatorFactory implements DelegatorFactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return MapperInterface
      */
     public function createDelegatorWithName(
-        ServiceLocatorInterface $mappers,
+        ServiceLocatorInterface $serviceLocator,
         $name,
         $requestedName,
         $callback
@@ -32,7 +35,7 @@ class UserMapperDelegatorFactory implements DelegatorFactoryInterface
             return $mapper;
         }
 
-        $services = $mappers->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
 
         /* @var $options ModuleOptions */
         $options = $services->get(ModuleOptions::class);

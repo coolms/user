@@ -14,6 +14,7 @@ use Zend\Filter\StringToLower,
     Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface,
     Zend\Validator\Callback,
+    Zend\Validator\ValidatorInterface,
     CmsUser\Options\InputFilterOptionsInterface,
     CmsUser\Options\ModuleOptions;
 
@@ -21,10 +22,12 @@ class NoUsernameExistsValidatorFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * @return ValidatorInterface
      */
-    public function createService(ServiceLocatorInterface $validators)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $validators->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         /* @var $options InputFilterOptionsInterface */
         $options = $services->get(ModuleOptions::class);
         /* @var $userMapper \CmsUser\Persistence\UserMapperInterface */
@@ -34,14 +37,14 @@ class NoUsernameExistsValidatorFactory implements FactoryInterface
         if ($services->has($options->getAuthenticationService())) {
             /* @var $authService \Zend\Authentication\AuthenticationServiceInterface */
             $authService = $services->get($options->getAuthenticationService());
-        
+
             if ($authService->hasIdentity()) {
                 /* @var $identity \CmsUser\Mapping\UserInterface */
                 $identity = $authService->getIdentity();
             }
         }
 
-        return $validators->get('Callback', [
+        return $serviceLocator->get('Callback', [
             'messages' => [
                 Callback::INVALID_VALUE => 'This username is already taken',
             ],

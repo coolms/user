@@ -17,10 +17,12 @@ class BirthdayVerifyElementFactory extends BirthdayElementFactory
 {
     /**
      * {@inheritDoc}
+     *
+     * @return BirthdayVerify
      */
-    public function createService(ServiceLocatorInterface $elements)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $elements->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         return $this->configureElement(new BirthdayVerify('birthdayVerify'), $services);
     }
 }
