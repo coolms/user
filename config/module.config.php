@@ -264,6 +264,7 @@ return [
                 'order' => 0,
             ],
             [
+                'label' => 'User',
                 'label_helper' => 'cmsUserDisplayName',
                 'text_domain' => __NAMESPACE__,
                 'route' => 'cms-user',
