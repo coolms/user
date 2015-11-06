@@ -15,9 +15,14 @@ return [
         'cms-admin' => [
             'child_routes' => [
                 'user' => [
-                    'type' => 'Literal',
+                    'type' => 'Segment',
                     'options' => [
-                        'route' => '/user',
+                        'route' => '/user[/:controller[/:action[/:id]]]',
+                        'constraints' => [
+                            'controller' => '[a-zA-Z\-]*',
+                            'action' => '[a-zA-Z\-]*',
+                            'id' => '[a-zA-Z0-9\-]*',
+                        ],
                         'defaults' => [
                             '__NAMESPACE__' => 'CmsUser\Controller',
                             'controller' => 'admin',
@@ -25,24 +30,6 @@ return [
                         ],
                     ],
                     'may_terminate' => true,
-                    'child_routes' => [
-                        'default' => [
-                            'type' => 'Segment',
-                            'options' => [
-                                'route' => '[/:controller[/:action[/:id]]]',
-                                'constraints' => [
-                                    'controller' => '[a-zA-Z\-]*',
-                                    'action' => '[a-zA-Z\-]*',
-                                    'id' => '[0-9]*',
-                                ],
-                                'defaults' => [
-                                    'controller' => 'user',
-                                    'action' => 'index',
-                                ],
-                            ],
-                        ],
-                        
-                    ],
                 ],
             ],
         ],
@@ -52,7 +39,7 @@ return [
                 'route' => '/user',
                 'defaults' => [
                     '__NAMESPACE__' => 'CmsUser\Controller',
-                    'controller' => 'Index',
+                    'controller' => 'index',
                     'action' => 'index',
                 ],
             ],
