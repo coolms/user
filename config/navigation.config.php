@@ -16,6 +16,7 @@ return [
             'label' => 'Users',
             'title' => 'Users',
             'text_domain' => __NAMESPACE__,
+            'may_terminate' => true,
             'route' => 'cms-admin/user',
             'twbs' => [
                 'labelWrapper' => [
@@ -31,7 +32,7 @@ return [
             ],
             'pages' => [
                 [
-                    'label' => 'User list',
+                    'label' => 'List',
                     'title' => 'User list',
                     'text_domain' => __NAMESPACE__,
                     'route' => 'cms-admin/user',
@@ -39,9 +40,25 @@ return [
                         'controller' => 'user',
                         'action' => 'list',
                     ],
+                    'attribs' => [
+                        'class' => 'btn btn-default',
+                    ],
+                    'twbs' => [
+                        'labelWrapper' => [
+                            'type' => 'htmlContainer',
+                            'tagName' => 'span',
+                            'class' => 'hidden-xs hidden-sm hidden-md',
+                        ],
+                        'icon' => [
+                            'type' => 'fa',
+                            'content' => 'list',
+                            'placement' => 'prepend',
+                            'tagName' => 'i',
+                        ],
+                    ],
                 ],
                 [
-                    'label' => 'Create user',
+                    'label' => 'Create',
                     'title' => 'User creation',
                     'text_domain' => __NAMESPACE__,
                     'route' => 'cms-admin/user',
@@ -49,11 +66,28 @@ return [
                         'controller' => 'user',
                         'action' => 'create',
                     ],
+                    'attribs' => [
+                        'class' => 'btn btn-success',
+                    ],
+                    'twbs' => [
+                        'labelWrapper' => [
+                            'type' => 'htmlContainer',
+                            'tagName' => 'span',
+                            'class' => 'hidden-xs hidden-sm hidden-md',
+                        ],
+                        'icon' => [
+                            'type' => 'fa',
+                            'content' => 'plus',
+                            'placement' => 'prepend',
+                            'tagName' => 'i',
+                        ],
+                    ],
                 ],
                 [
-                    'label' => 'Update user',
+                    'label' => 'Update',
                     'title' => 'User update',
                     'text_domain' => __NAMESPACE__,
+                    'visible' => false,
                     'route' => 'cms-admin/user',
                     'params' => [
                         'controller' => 'user',
