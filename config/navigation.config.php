@@ -45,7 +45,6 @@ return [
                     ],
                     'twbs' => [
                         'labelWrapper' => [
-                            'type' => 'htmlContainer',
                             'tagName' => 'span',
                             'class' => 'hidden-xs hidden-sm hidden-md',
                         ],
@@ -54,6 +53,62 @@ return [
                             'content' => 'list',
                             'placement' => 'prepend',
                             'tagName' => 'i',
+                        ],
+                    ],
+                    'pages' => [
+                        [
+                            'label' => 'Update',
+                            'title' => 'User update',
+                            'text_domain' => __NAMESPACE__,
+                            'visible' => false,
+                            'route' => 'cms-admin/user',
+                            'params' => [
+                                'controller' => 'user',
+                                'action' => 'update',
+                                'id' => ':id',
+                            ],
+                            'attribs' => [
+                                'class' => 'btn btn-primary',
+                            ],
+                            'twbs' => [
+                                'labelWrapper' => [
+                                    'tagName' => 'span',
+                                    'class' => 'sr-only',
+                                ],
+                                'icon' => [
+                                    'type' => 'fa',
+                                    'content' => 'edit',
+                                    'placement' => 'prepend',
+                                    'tagName' => 'i',
+                                ],
+                            ],
+                        ],
+                        [
+                            'label' => 'Remove',
+                            'title' => 'User remove',
+                            'text_domain' => __NAMESPACE__,
+                            'visible' => false,
+                            'route' => 'cms-admin/user',
+                            'params' => [
+                                'controller' => 'user',
+                                'action' => 'delete',
+                                'id' => ':id',
+                            ],
+                            'attribs' => [
+                                'class' => 'btn btn-danger',
+                            ],
+                            'twbs' => [
+                                'labelWrapper' => [
+                                    'tagName' => 'span',
+                                    'class' => 'sr-only',
+                                ],
+                                'icon' => [
+                                    'type' => 'fa',
+                                    'content' => 'remove',
+                                    'placement' => 'prepend',
+                                    'tagName' => 'i',
+                                ],
+                            ],
                         ],
                     ],
                 ],
@@ -71,7 +126,6 @@ return [
                     ],
                     'twbs' => [
                         'labelWrapper' => [
-                            'type' => 'htmlContainer',
                             'tagName' => 'span',
                             'class' => 'hidden-xs hidden-sm hidden-md',
                         ],
@@ -81,17 +135,6 @@ return [
                             'placement' => 'prepend',
                             'tagName' => 'i',
                         ],
-                    ],
-                ],
-                [
-                    'label' => 'Update',
-                    'title' => 'User update',
-                    'text_domain' => __NAMESPACE__,
-                    'visible' => false,
-                    'route' => 'cms-admin/user',
-                    'params' => [
-                        'controller' => 'user',
-                        'action' => 'update',
                     ],
                 ],
             ],
