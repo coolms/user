@@ -20,6 +20,18 @@ msgstr "Пользователь"
 msgid "Users"
 msgstr "Пользователи"
 
+msgid "User list"
+msgstr "Список пользователей"
+
+msgid "User creation"
+msgstr "Создание пользователя"
+
+msgid "User update"
+msgstr "Обновление пользователя"
+
+msgid "User remove"
+msgstr "Удаление пользователя"
+
 msgid "Registration"
 msgstr "Регистрация"
 

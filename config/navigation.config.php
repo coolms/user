@@ -12,7 +12,7 @@ namespace CmsUser;
 
 return [
     'cmsadminmodules' => [
-        [
+        'user' => [
             'label' => 'Users',
             'title' => 'Users',
             'text_domain' => __NAMESPACE__,
@@ -31,15 +31,18 @@ return [
                 ],
             ],
             'pages' => [
-                [
+                'list' => [
                     'label' => 'List',
                     'title' => 'User list',
                     'text_domain' => __NAMESPACE__,
+                    'may_terminate' => true,
                     'route' => 'cms-admin/user',
                     'params' => [
                         'controller' => 'user',
                         'action' => 'list',
                     ],
+                    'ul_class' => 'btn-toolbar text-nowrap',
+                    'class' => 'btn-group',
                     'attribs' => [
                         'class' => 'btn btn-default',
                     ],
@@ -56,7 +59,7 @@ return [
                         ],
                     ],
                     'pages' => [
-                        [
+                        'update' => [
                             'label' => 'Update',
                             'title' => 'User update',
                             'text_domain' => __NAMESPACE__,
@@ -67,6 +70,7 @@ return [
                                 'action' => 'update',
                                 'id' => ':id',
                             ],
+                            'class' => 'btn-group',
                             'attribs' => [
                                 'class' => 'btn btn-primary',
                             ],
@@ -83,7 +87,7 @@ return [
                                 ],
                             ],
                         ],
-                        [
+                        'remove' => [
                             'label' => 'Remove',
                             'title' => 'User remove',
                             'text_domain' => __NAMESPACE__,
@@ -94,6 +98,7 @@ return [
                                 'action' => 'delete',
                                 'id' => ':id',
                             ],
+                            'class' => 'btn-group',
                             'attribs' => [
                                 'class' => 'btn btn-danger',
                             ],
@@ -110,9 +115,42 @@ return [
                                 ],
                             ],
                         ],
+                        'actions' => [
+                            'label' => 'Actions',
+                            'title' => 'Actions',
+                            'text_domain' => __NAMESPACE__,
+                            'visible' => false,
+                            'uri' => '',
+                            'ul_class' => 'dropdown-menu',
+                            'class' => 'btn-group',
+                            'attribs' => [
+                                'class' => 'btn btn-default dropdown-toggle',
+                                'data-toggle' => 'dropdown',
+                                'aria-haspopup' => 'true',
+                                'aria-expanded' => 'false',
+                            ],
+                            'twbs' => [
+                                'labelWrapper' => [
+                                    'tagName' => 'span',
+                                    'class' => 'sr-only',
+                                ],
+                                'icon' => [
+                                    'type' => 'fa',
+                                    'content' => 'reorder',
+                                    'placement' => 'prepend',
+                                    'tagName' => 'i',
+                                ],
+                                'caret' => [
+                                    'tagName' => 'span',
+                                    'class' => 'caret',
+                                    'placement' => 'append',
+                                ],
+                            ],
+                            'pages' => [],
+                        ],
                     ],
                 ],
-                [
+                'create' => [
                     'label' => 'Create',
                     'title' => 'User creation',
                     'text_domain' => __NAMESPACE__,
@@ -121,6 +159,7 @@ return [
                         'controller' => 'user',
                         'action' => 'create',
                     ],
+                    'class' => 'btn-group',
                     'attribs' => [
                         'class' => 'btn btn-success',
                     ],
