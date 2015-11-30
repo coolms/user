@@ -18,16 +18,17 @@ namespace CmsUser\Mapping;
 interface UserableInterface
 {
     /**
+     * Set user
+     *
+     * @param UserInterface $user
+     * @return self
+     */
+    public function setUser(UserInterface $user);
+
+    /**
      * Get user
-     * 
+     *
      * @return UserInterface
      */
     public function getUser();
-
-    /**
-     * Set user
-     * 
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user);
 }

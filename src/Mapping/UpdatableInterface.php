@@ -19,6 +19,7 @@ interface UpdatableInterface
      * Sets updatedBy
      *
      * @param UserInterface $updatedBy
+     * @return self
      */
     public function setUpdatedBy(UserInterface $updatedBy);
 

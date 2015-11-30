@@ -26,10 +26,13 @@ trait UpdatableTrait
      * Sets updatedBy
      *
      * @param UserInterface $updatedBy
+     * @return self
      */
     public function setUpdatedBy(UserInterface $updatedBy)
     {
         $this->updatedBy = $updatedBy;
+
+        return $this;
     }
 
     /**

@@ -16,6 +16,7 @@ interface ChangeableInterface
      * Sets changedBy
      *
      * @param UserInterface $changedBy
+     * @return self
      */
     public function setChangedBy(UserInterface $changedBy);
 

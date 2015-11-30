@@ -24,18 +24,21 @@ trait UserableTrait
     protected $user;
 
     /**
+     * @param UserInterface $user
+     * @return self
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
      * @return UserInterface
      */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
     }
 }

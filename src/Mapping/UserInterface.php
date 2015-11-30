@@ -38,6 +38,7 @@ interface UserInterface extends StateableInterface, ExpirableInterface, Password
      * Sets username
      *
      * @param string $username
+     * @return self
      */
     public function setUsername($username);
 
@@ -52,6 +53,7 @@ interface UserInterface extends StateableInterface, ExpirableInterface, Password
      * Sets email address
      *
      * @param string $email
+     * @return self
      */
     public function setEmail($email);
 
@@ -59,6 +61,7 @@ interface UserInterface extends StateableInterface, ExpirableInterface, Password
      * Sets whether email is confirmed
      *
      * @param bool $flag
+     * @return self
      */
     public function setEmailConfirmed($flag);
 
@@ -101,6 +104,7 @@ interface UserInterface extends StateableInterface, ExpirableInterface, Password
      * Set registration token
      *
      * @param string $token
+     * @return self
      */
     public function setRegistrationToken($token);
 

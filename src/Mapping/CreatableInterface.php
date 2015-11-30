@@ -19,6 +19,7 @@ interface CreatableInterface
      * Sets createdBy
      *
      * @param UserInterface $createdBy
+     * @return self
      */
     public function setCreatedBy(UserInterface $createdBy);
 

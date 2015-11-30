@@ -26,10 +26,13 @@ trait ChangeableTrait
      * Sets changedBy
      *
      * @param UserInterface $changedBy
+     * @return self
      */
     public function setChangedBy(UserInterface $changedBy)
     {
         $this->changedBy = $changedBy;
+
+        return $this;
     }
 
     /**

@@ -26,10 +26,13 @@ trait CreatableTrait
      * Sets createdBy
      *
      * @param UserInterface $createdBy
+     * @return self
      */
     public function setCreatedBy(UserInterface $createdBy)
     {
         $this->createdBy = $createdBy;
+
+        return $this;
     }
 
     /**

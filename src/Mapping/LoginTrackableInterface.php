@@ -10,6 +10,8 @@
 
 namespace CmsUser\Mapping;
 
+use DateTime;
+
 /**
  * User login tarcking interface
  *
@@ -18,16 +20,17 @@ namespace CmsUser\Mapping;
 interface LoginTrackableInterface
 {
     /**
-     * Get loginAt
-     *
-     * @return \DateTime
-     */
-    public function getLoginAt();
-
-    /**
      * Set loginAt
      *
-     * @param \DateTime $loginAt
+     * @param DateTime $loginAt
+     * @return self
      */
-    public function setLoginAt(\DateTime $loginAt);
+    public function setLoginAt(DateTime $loginAt);
+
+    /**
+     * Get loginAt
+     *
+     * @return DateTime
+     */
+    public function getLoginAt();
 }

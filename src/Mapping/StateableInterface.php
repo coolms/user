@@ -10,14 +10,14 @@
 
 namespace CmsUser\Mapping;
 
-use CmsCommon\Mapping\Common\StateableInterface as BaseStateableInterface;
+use CmsCommon\Mapping\Common\StateableInterface as CommonStateableInterface;
 
 /**
  * User state interface
  *
  * @author Dmitry Popov <d.popov@altgraphic.com>
  */
-interface StateableInterface extends BaseStateableInterface
+interface StateableInterface extends CommonStateableInterface
 {
     
 }
