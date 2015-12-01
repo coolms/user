@@ -127,8 +127,6 @@ return [
                 => ['CmsUser\Factory\Persistence\UserMapperDelegatorFactory'],
         ],
     ],
-    'navigation' => include('navigation.config.php'),
-    'router' => include('router.config.php'),
     'service_manager' => [
         'aliases' => [
             'CmsUser\Options\ModuleOptionsInterface' => 'CmsUser\Options\ModuleOptions',

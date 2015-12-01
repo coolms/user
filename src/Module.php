@@ -55,6 +55,10 @@ class Module implements
      */
     public function getConfig()
     {
-        return include __DIR__ . '/../config/module.config.php';
+        return array_merge(
+            include __DIR__ . '/../config/module.config.php',
+            ['router' => include __DIR__ . '/../config/router.config.php'],
+            ['navigation' => include __DIR__ . '/../config/navigation.config.php']
+        );
     }
 }
