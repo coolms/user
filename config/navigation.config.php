@@ -68,6 +68,8 @@ return [
                             'params' => [
                                 'controller' => 'user',
                                 'action' => 'update',
+                            ],
+                            'link_placeholders' => [
                                 'id' => ':id',
                             ],
                             'class' => 'btn-group',
